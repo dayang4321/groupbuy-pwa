@@ -1,0 +1,174 @@
+
+.my-input .form-control {
+    display: block;
+    width: 100%;
+    height: unset;
+    /* height: calc(1.5em + .75rem + 2px); */
+    font-weight: 500;
+    font-family: var(--second-font-family);
+    padding: 5px .75rem;
+    line-height: 1.5;
+    color: var(--dark-color);
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 5px solid var(--dark-color);
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.my-input .form-control::placeholder{
+    font-family: var(--second-font-family);
+font-style: italic;
+color: var(--dark-color);
+font-size: 14px;
+font-weight: 300;
+}
+
+.my-input .form-control:focus {
+    color: var(--dark-color);
+    background-color:transparent;
+    border-color: #000000;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+}
+
+.my-input label:not(.custom-control-label){
+    display: inline-block;
+    margin-bottom: 3px;
+    color: var(--dark-color);
+    font-family: var(--second-font-family);
+font-weight: 600;
+margin-left: 24px;
+}
+.custom-select {
+    width: 100%;
+    height: unset;
+    /* height: calc(1.5em + .75rem + 2px); */
+    padding: 5px .75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--dark-color);
+    /* background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;  */
+    background: #fff url(../../../assets/img/svg/select-arrow.svg) no-repeat right .75rem center/8px 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 5px solid var(--dark-color);
+}
+
+.custom-select:disabled {
+ background-color: transparent; 
+    opacity: 1;
+}
+
+.custom-select:focus {
+    color: var(--dark-color);
+    background-color:transparent;
+    border-color: #000000;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+}
+
+.custom-select.is-valid, .was-validated .custom-select:valid{
+  background: url(../../../assets/img/svg/select-arrow.svg) no-repeat right .75rem center/8px 10px,url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")  no-repeat center right 1.75rem/calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.custom-select.is-invalid, .was-validated .custom-select:invalid {
+    background: url(../../../assets/img/svg/select-arrow.svg) no-repeat right .75rem center/8px 10px,url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e")  no-repeat center right 1.75rem/calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.custom-select option:not(:first-of-type){
+    color: #000000;
+}
+
+.my-input .custom-control{
+    padding: 0;
+}
+
+.my-input .custom-control-label::after {
+    position: absolute;
+    top: -1.5px;
+    left: -1.5rem;
+    display: block;
+    width: 25px;
+    height: 25px;
+    content: "";
+    background: no-repeat 50%/50% 50%;
+    border-radius: 5px;
+    
+}
+.my-input .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    border: 5px solid black;
+    border-radius: 35%;
+    background: transparent;
+    background-image: none;
+}
+.my-input .custom-control-input:checked~.custom-control-label::before {
+    border: 9px solid white;
+    color: #fff;
+    border-radius: 45%;
+    /* border-color: #FFF; */
+    background-color: black;
+}
+
+.my-input .custom-checkbox .custom-control-label::before {
+    border-radius: 7.5px;
+}
+
+.my-input .custom-control-label{
+    color: var(--dark-color);
+    margin-left: 23px;
+    font-family: var(--second-font-family);
+    font-weight: 600;
+}
+
+.my-input .custom-control-label::before {
+    position: absolute;
+    top: -1.5px;
+    left: -1.5rem;
+    display: block;
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: 5px solid #000000;
+    border-radius: 5px;
+}
+
+.custom-checkbox .custom-control-label{
+    line-height: 150%;
+    width: 80%;
+    position: relative;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+
+
+.my-input.file-input{
+    position: relative;
+    max-width: 48%;
+}
+
+.my-input .file{
+    visibility: hidden;
+    position: absolute;
+}
+
+.my-input.file-input p {
+font-weight: 600;
+font-family: var(--second-font-family);
+}
+
+
+svg.invalid rect{
+stroke: var(--danger);
+}
+
+input[type='date']{
+    padding-right: 30px
+}
+

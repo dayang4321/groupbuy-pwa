@@ -1,0 +1,25 @@
+main{
+    min-height: 66vh;
+    padding: 10vw 14vw;
+    background-color: var(--primary-color);
+}
+
+main.start-bg{
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)) , url(../../assets/img/start-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFFFFF;
+    /* animation-name: move;
+    animation-duration: 180s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; */
+}
+
+/* @keyframes move {
+    0%, 100% {
+      background-position: left;
+    }
+    50% {
+      background-position: right;
+    }
+  } */

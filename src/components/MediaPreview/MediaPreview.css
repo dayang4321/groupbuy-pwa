@@ -1,0 +1,77 @@
+.image-preview,
+.video-preview{
+    min-height: 70px;
+    height: 18.12vw;
+    max-height: 100px;
+    position: relative;
+    display: flex;
+}
+.image-preview>div,
+.video-preview>div{
+    min-height: 70px;
+    height: 18.12vw;
+    max-height: 100px;
+    max-width: 80px;
+    margin-right: 3vw;
+    position: relative;
+}
+
+
+.image-preview img,
+.video-preview video{
+    height: 100%;
+    min-width: 70px;
+    width: 100%;
+    max-width: 100px;
+}
+
+
+.image-preview >div::after,
+.video-preview >div::after{
+  
+    content: '—';
+    position: absolute;
+    font-weight: 900;
+    left: -5%;
+    top: 0;
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-color);
+}
+
+
+
+.delete-text{
+    font-family: var(--second-font-family);
+    font-size: min(max(10px, 2.9vw), 14px);
+    display: none;
+}
+
+
+.image-preview .progress,
+.video-preview .progress{
+    position: relative;
+    display: flex;
+    height: 3.3px;
+    overflow: hidden;
+    line-height: 0;
+    font-size: .75rem;
+    background-color: #FFFFFF;
+    border-radius: .25rem;
+    bottom: -5px;
+    padding: 1px;
+    border-radius: 45px;
+}
+
+.image-preview .progress-bar,
+.video-preview .progress-bar{ 
+    background-color: black;
+    border-radius: 45px;
+}

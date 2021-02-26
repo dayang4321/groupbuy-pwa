@@ -1,0 +1,22 @@
+.custom-control-input.is-invalid~.custom-control-label, 
+.custom-control-input.is-valid~.custom-control-label {
+    color: unset; 
+}
+
+.custom-checkbox .custom-control-label span>a {
+ 
+}
+#signinForm > div:nth-child(5) > div > label > span > a {
+    color: unset!important;
+    text-decoration: underline!important;
+}
+
+#signinForm .form-control,
+#signinForm label{
+    color: #FFFFFF!important;
+    border-color: #FFFFFF!important;
+}
+
+#signinForm .form-control:focus{
+box-shadow: 0 0 0 0.2rem rgba(255,255,255,.25);
+}

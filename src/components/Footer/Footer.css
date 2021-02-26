@@ -1,0 +1,54 @@
+footer{
+    background-color: var(--dark-color);
+    color: #FFFFFF;
+    text-align: center;
+  padding: 9vw 1.5vw;
+}
+
+footer>h1>span {
+    font-size: var(--h5-font-size);
+}
+
+footer p{
+    font-family: var(--second-font-family);
+    margin: 2vw 0;
+    font-size: var(--sub-heading-font-size);
+}
+
+.contact-link{
+    font-family: var(--second-font-family);
+    margin: 2vw 0;
+    font-size: var(--sub-heading-font-size);
+    color: #FFFFFF;
+}
+
+.contact-link.t-c{
+    color:var(--primary-light-color);
+    font-size: var(--body-text-font-size);
+}
+
+.contact-link.buyer-link{
+    color:var(--primary-light-color);
+    font-size: var(--body-text-font-size);
+    border: 1.5px solid var(--primary-color);
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+
+.painless-text>span:first-of-type{
+    font-size: 10px;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.painless-text>span:last-of-type{
+    font-size: 10px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.95em;
+    text-transform: capitalize;
+}

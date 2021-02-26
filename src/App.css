@@ -1,0 +1,36 @@
+.App{
+    display: none;
+}
+
+.unsupported{
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #e7e7e7;
+    padding: 30vh 30%; 
+    font-size: 1.4vw;
+    font-weight: 700;
+    font-family: var(--second-font-family);
+}
+
+@media screen and (max-width:601px) 
+ /* and (pointer:coarse) and (hover:none), (hover:on-demand)  */
+{ 
+    /* custom css for "touch targets" */
+
+    .App{
+        display: unset;
+    }
+    
+    .unsupported{
+        display: none;
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: #e7e7e7;
+        padding: 30vh 30%; 
+        font-size: 1.4vw;
+        font-weight: 700;
+        font-family: var(--second-font-family);
+    }
+  }
