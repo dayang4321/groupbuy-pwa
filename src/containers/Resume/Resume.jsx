@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { ReactComponent as PlusCircle } from "../../assets/img/svg/plus-circle.svg";
 import { AuthContext } from '../../context/AuthContext';
 import { FormContext } from '../../context/FormContext';
-import Axios,{ setAuthToken } from '../../declutter-axios-base';
+import Axios,{ setAuthToken } from '../../groupbuy-axios-base';
 
 import './Resume.css'
 

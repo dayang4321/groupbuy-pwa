@@ -1,7 +1,7 @@
 main{
     min-height: 66vh;
     padding: 10vw 14vw;
-    background-color: var(--primary-color);
+    background-color: var(--light-color);
 }
 
 main.start-bg{

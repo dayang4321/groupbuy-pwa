@@ -5,7 +5,7 @@ import { ReactComponent as PlusCircle } from "../../assets/img/svg/plus-circle.s
 import Tick from "../../assets/img/svg/tick.svg";
 import "./SellForms.css";
 import { Select } from "../../components/UI/Input/Input";
-import Axios, { setAuthToken } from "../../declutter-axios-base"
+import Axios, { setAuthToken } from "../../groupbuy-axios-base"
 import { AuthContext } from "../../context/AuthContext";
 import { Fade } from "react-bootstrap";
 
@@ -150,7 +150,7 @@ function SellForms(props) {
 
   return (
     <div>
-      {!isSuccess && <h2 className="mb-4">Lets help you sell your product.</h2>}
+      {!isSuccess && <h2 className="mb-4 primary-text">Lets help you create a bulk deal.</h2>}
 
       {isSuccess ? completeMsg : sellFormsArr}
     </div>

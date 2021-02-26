@@ -10,12 +10,13 @@ import Logo from "./assets/img/declutter512x133.png";
 import "./App.css";
 
 function App() {
-  const authContext = useContext(AuthContext);
+ const authContext = useContext(AuthContext);
 
   let routes = (
     <Switch>
       <Route path="/" exact component={Start} />
       <Route path="/start" exact component={Start} />
+      <Route path="/seller" exact component={Seller} />
       <Redirect to="/" />
     </Switch>
   );

@@ -64,7 +64,7 @@ export const inputChangeHandler = (event, inputIdentifier, Form, setForm) => {
    
     const updatedForm = { ...Form };
     const updatedFormElement = { ...Form[inputIdentifier] };
-    updatedFormElement.value = inputIdentifier === "isAgreed" ? event.target.checked : event.target.value;
+    updatedFormElement.value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
     updatedFormElement.touched = true;
  
     updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation)

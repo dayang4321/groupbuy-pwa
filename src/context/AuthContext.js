@@ -1,6 +1,6 @@
 import React,{useState,useLayoutEffect} from 'react';
 import { useHistory } from "react-router-dom";
-import Axios from '../declutter-axios-base'
+import Axios from '../groupbuy-axios-base'
 
 
 

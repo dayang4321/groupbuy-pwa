@@ -1,10 +1,10 @@
 import Axios from 'axios'
 
 const instance = Axios.create({
-    baseURL: "https://api.declutter.ng",
+    baseURL: "https://api.groupbuy.mealimeter.com",
     headers: { 
    // 'Content-Type': 'multipart/form-data', 
-     // 'X-Authorization': 'Oix1Xh0gOFreXmQlL4JPJWcDsnvo3La4LDXm9q4OCiSxV9XhYk7ziYcMIj1ctbci',
+ 'X-Authorization': 'xZWqsxOQ4nhwg2RcnD0MEerejKWnn3mxXPd6NimYdKdgcH9ohPlAXvPR9vNCVRSt',
       },
 });
 

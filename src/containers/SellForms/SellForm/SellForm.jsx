@@ -8,7 +8,7 @@ import { inputChangeHandler, currencyDisplay, todayDate } from "../../../shared/
 
 import "./SellForm.css";
 import MediaPreview from "../../../components/MediaPreview/MediaPreview";
-import Axios, { setAuthToken } from "../../../declutter-axios-base";
+import Axios, { setAuthToken } from "../../../groupbuy-axios-base";
 import { Button, ProgressBar } from "react-bootstrap";
 import getBlobDuration from "get-blob-duration";
 import { toast } from "react-toastify";
@@ -31,8 +31,6 @@ const SellForm = (props) => {
 
 
   const formPrefill = formContext.incompleteData;
-  const [defected, setDefected] = React.useState(!!formPrefill.defect.files[0]);
-  //console.log(formPrefill)
 
   const prefillVideo = useMemo(() => { return !!formPrefill.files[0] ? formPrefill.files.filter((file) => {
     return file.file_type === "video"
@@ -42,14 +40,14 @@ const SellForm = (props) => {
     return file.file_type === "image"
   }).slice(-3).map((media) => { return { file: media.path, data: media.source } }) : [] },[formPrefill.files]  )
   
-  const prefillDefectVideo = useMemo(() => {
-    return !!formPrefill.defect.files[0] ? formPrefill.defect.files.filter((file) => {
-      return file.file_type === "video"
-    }).slice(-1).map((media) => { return { file: media.path, data: media.source } }) : []}, [formPrefill.defect.files])
+  // const prefillDefectVideo = useMemo(() => {
+  //   return !!formPrefill.defect.files[0] ? formPrefill.defect.files.filter((file) => {
+  //     return file.file_type === "video"
+  //   }).slice(-1).map((media) => { return { file: media.path, data: media.source } }) : []}, [formPrefill.defect.files])
   
-  const prefillDefectImages = useMemo(()=>{return !!formPrefill.defect.files[0] ? formPrefill.defect.files.filter((file) => {
-    return file.file_type === "image"
-  }).slice(-3).map((media)=>{return{file:media.path, data:media.source}}) : []}, [formPrefill.defect.files])
+  // const prefillDefectImages = useMemo(()=>{return !!formPrefill.defect.files[0] ? formPrefill.defect.files.filter((file) => {
+  //   return file.file_type === "image"
+  // }).slice(-3).map((media)=>{return{file:media.path, data:media.source}}) : []}, [formPrefill.defect.files])
   
 
   const sellFormObj =  useMemo(() =>{ return {
@@ -69,7 +67,7 @@ const SellForm = (props) => {
       valid: false,
       touched: false,
     },
-    reason: {
+    category: {
       value: "",
       validation: {
         required: true,
@@ -77,7 +75,23 @@ const SellForm = (props) => {
       valid: false,
       touched: false,
     },
-    price: {
+    total_quantity: {
+      value: "",
+      validation: {
+        required: true,
+      },
+      valid: false,
+      touched: false,
+    },
+    minimum_quantity: {
+      value: "",
+      validation: {
+        required: true,
+      },
+      valid: false,
+      touched: false,
+    },
+    deal_price: {
       value: "",
       validation: {
         required: true,
@@ -86,8 +100,25 @@ const SellForm = (props) => {
       valid: false,
       touched: false,
     },
-    release_date: {
+    retail_price: {
+      value: "",
+      validation: {
+        required: true,
+        isNumeric: true,
+      },
+      valid: false,
+      touched: false,
+    },
+    deal_end_date: {
       value: todayDate(),
+      validation: {
+        required: false,
+      },
+      valid: true,
+      touched: false,
+    },
+    can_restart: {
+      value: "",
       validation: {
         required: false,
       },
@@ -103,14 +134,6 @@ const SellForm = (props) => {
       valid: !!prefillVideo[0]||true,
       touched: !!prefillVideo[0],
     },
-    product_status: {
-      value: '',
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-    },
     images: {
       value: prefillImages,
       validation: {
@@ -119,67 +142,44 @@ const SellForm = (props) => {
       valid: !!prefillImages[0],
       touched: !!prefillImages[0],
     },
-    defect_description: {
-      value: "null",
-      validation: {
-        required: false,
-      },
-      valid: true,
-      touched: false,
-    },
-    defect_video: {
-      value: prefillDefectVideo,
-      validation: {
-        requiredArr: false,
-      },
-      valid: !!prefillDefectVideo[0]||true ,
-      touched: !!prefillDefectVideo[0],
-    },
-    defect_images: {
-      value: prefillDefectImages,
-      validation: {
-        requiredArr: false,
-      },
-      valid: !!prefillDefectImages[0],
-      touched: !!prefillDefectImages[0],
-    },
+
   
     formValidity: false,
-  }},[formPrefill.name, prefillDefectImages, prefillDefectVideo, prefillImages, prefillVideo]);
+  }},[formPrefill.name, prefillImages, prefillVideo]);
   //console.log(sellFormObj)
 
-  const customerInfoFormObj = {
-    customer_name: {
-      value: "",
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-    },
-    customer_phone: {
-      value: "",
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-    },
-    customer_email: {
-      value: "",
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-    },
-    formValidity: false,
+  // const customerInfoFormObj = {
+  //   customer_name: {
+  //     value: "",
+  //     validation: {
+  //       required: true,
+  //     },
+  //     valid: false,
+  //     touched: false,
+  //   },
+  //   customer_phone: {
+  //     value: "",
+  //     validation: {
+  //       required: true,
+  //     },
+  //     valid: false,
+  //     touched: false,
+  //   },
+  //   customer_email: {
+  //     value: "",
+  //     validation: {
+  //       required: true,
+  //     },
+  //     valid: false,
+  //     touched: false,
+  //   },
+  //   formValidity: false,
 
-  }
+  // }
 
   const [sellForm, setSellForm] = useState(sellFormObj);
 
-  const [customerInfo, setCustomerInfo] = useState(customerInfoFormObj)
+  // const [customerInfo, setCustomerInfo] = useState(customerInfoFormObj)
 
   const [formTouched, setFormTouched] = useState(false);
 
@@ -193,91 +193,25 @@ const SellForm = (props) => {
 
   const [photoFilesProgress, setPhotoFilesProgress] = React.useState({
     product: { progress1: prefillImages[0]? 100: 0, progress2:  prefillImages[1]? 100: 0, progress3:  prefillImages[2]? 100: 0 },
-    defect: { progress1: prefillDefectImages[0]? 100: 0, progress2:prefillDefectImages[1]? 100: 0, progress3:  prefillDefectImages[2]? 100: 0 }
+    // defect: { progress1: prefillDefectImages[0]? 100: 0, progress2:prefillDefectImages[1]? 100: 0, progress3:  prefillDefectImages[2]? 100: 0 }
   });
 
   const [videoFile, setVideoFile] = React.useState(prefillVideo);
 
-  const [videoFileProgress, setVideoFileProgress] = React.useState({product:prefillVideo[0]?[100]:[], defect:prefillDefectVideo[0]?[100]:[]});
+  const [videoFileProgress, setVideoFileProgress] = React.useState({
+    product: prefillVideo[0] ? [100] : [],
+    //defect: prefillDefectVideo[0] ? [100] : []
+  });
 
-  const [defectPhotoFiles, setDefectPhotoFiles] = React.useState(prefillDefectImages);
+  // const [defectPhotoFiles, setDefectPhotoFiles] = React.useState(prefillDefectImages);
 
-  const [defectVideoFile, setDefectVideoFile] = React.useState(prefillDefectVideo);
+  // const [defectVideoFile, setDefectVideoFile] = React.useState(prefillDefectVideo);
 
   const [formProgress, setFormProgress] = React.useState(0);
 
   const [mediaDone, setMediaDone] = useState(false);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-
-  const defectValidateHandler = useCallback(() => {
-  
-    defected
-      ? setSellForm((s) => {
- 
-          return {
-            ...s,
-            defect_description: {
-              value: "",
-              validation: {
-                required: true,
-              },
-              valid: false,
-              touched: false,
-            },
-            defect_video: {
-              value: prefillDefectVideo,
-              validation: {
-                requiredArr: false,
-              },
-              valid: !!prefillDefectVideo[0] || true ,
-              touched: !!prefillDefectVideo[0],
-            },
-            defect_images: {
-              value: prefillDefectImages,
-              validation: {
-                requiredArr: false,
-              },
-              valid: !!prefillDefectImages[0],
-              touched: !!prefillDefectImages[0],
-            },
-            formValidity: false
-          };
-        })
-      : setSellForm((s) => {
-         // console.log("set");
-          return {
-            ...s,
-            defect_description: {
-              value: "",
-              validation: {
-                required: false,
-              },
-              valid: true,
-              touched: false,
-            },
-            defect_video: {
-              value: [],
-              validation: {
-                requiredArr: false,
-              },
-              valid: true,
-              touched: false,
-            },
-            defect_images: {
-              value: [],
-              validation: {
-                requiredArr: false,
-              },
-              valid: true,
-              touched: false,
-            },
-          };
-        });
-  }, [defected, setSellForm,prefillDefectImages,prefillDefectVideo]);
-
-  useEffect(defectValidateHandler, [defectValidateHandler]);
 
   const shouldValidate = (inputName) => {
     if (!sellForm[inputName].touched) {
@@ -290,31 +224,26 @@ const SellForm = (props) => {
     } else return !sellForm[inputName].valid;
   };
 
-  const shouldValidateCustomer = (inputName) => {
-    if (!customerInfo[inputName].touched) {
-      return null;
-    } else return customerInfo[inputName].valid;
-  };
-  const shouldInValidateCustomer  = (inputName) => {
-    if (!customerInfo[inputName].touched && !formTouched) {
-      return null;
-    } else return !customerInfo[inputName].valid;
-  };
-
-
-  const handleDefectMode = (bool) => {
-    setDefected(bool);
-  };
+  // const shouldValidateCustomer = (inputName) => {
+  //   if (!customerInfo[inputName].touched) {
+  //     return null;
+  //   } else return customerInfo[inputName].valid;
+  // };
+  // const shouldInValidateCustomer  = (inputName) => {
+  //   if (!customerInfo[inputName].touched && !formTouched) {
+  //     return null;
+  //   } else return !customerInfo[inputName].valid;
+  // };
 
   const imagePreviewHandler = (e, type) => {
     if (photoFiles.length > 2 && type!=="defect") {
       darkToast("We don't need more than 3 product photos");
       return;
     }
-    else if (defectPhotoFiles.length > 2 && type === "defect") {
-      darkToast("We don't need more than 3 defect photos");
-      return;
-    }
+    // else if (defectPhotoFiles.length > 2 && type === "defect") {
+    //   darkToast("We don't need more than 3 defect photos");
+    //   return;
+    // }
     const fileList = e.target.files;
     var fl = fileList.length;
     // console.log(fl)
@@ -335,19 +264,20 @@ const SellForm = (props) => {
       setAuthToken(authContext.token);
       Axios.post(url, formData, {
         onUploadProgress: (ProgressEvent) => {
-          if (type === "defect") {
-            setPhotoFilesProgress((s) => {
-              return { ...s, defect: { ...s.defect, [`progress${defectPhotoFiles.length + 1}`]: ((ProgressEvent.loaded / ProgressEvent.total) * 100) } };
-            });
-          }
-          else {
+          // if (type === "defect") {
+          //   setPhotoFilesProgress((s) => {
+          //     return { ...s, defect: { ...s.defect, [`progress${defectPhotoFiles.length + 1}`]: ((ProgressEvent.loaded / ProgressEvent.total) * 100) } };
+          //   });
+          // }
+     
             setPhotoFilesProgress((s) => {
               return {
                 ...s, product: {
                   ...s.product, [`progress${photoFiles.length + 1}`]: ((ProgressEvent.loaded / ProgressEvent.total) * 100)
                 }
               };});
-          }}
+     
+        }
       })
         .then(res => { 
           
@@ -358,12 +288,13 @@ const SellForm = (props) => {
       // eslint-disable-next-line no-loop-func
       reader.onload = function (e) {
         //console.log(file,e.target)
-        type === "defect"
-          ? setDefectPhotoFiles([
-              ...defectPhotoFiles,
-              { file: file, data: e.target.result },
-            ])
-          : setPhotoFiles([
+        // type === "defect"
+        //   ? setDefectPhotoFiles([
+        //       ...defectPhotoFiles,
+        //       { file: file, data: e.target.result },
+        //     ])
+        //   :
+          setPhotoFiles([
               ...photoFiles,
               { file: file, data: e.target.result },
             ]);
@@ -385,12 +316,12 @@ const SellForm = (props) => {
             return  darkToast("Video must be 20 seconds or less!");
       }
       else {
-        if (type === "defect") {
-          setDefectVideoFile([{ file: file, data: blobURL }])
-        }
-        else {
+        // if (type === "defect") {
+        //   setDefectVideoFile([{ file: file, data: blobURL }])
+        // }
+        // else {
           setVideoFile([{ file: file, data: blobURL }])
-        };        
+        // };        
       const formData = new FormData();
       formData.append("product_id",formId)
       let url;
@@ -437,20 +368,6 @@ const SellForm = (props) => {
       setVideoFile([...newState]);
     }
   };
-  const defectRemoveHandler = (type, id) => {
-    if (type === "photo") {
-      const newState = defectPhotoFiles.filter((data, index) => {
-        return index !== id;
-      });
-      setDefectPhotoFiles([...newState]);
-    }
-    if (type === "video") {
-      const newState = defectVideoFile.filter((data, index) => {
-        return index !== id;
-      });
-      setDefectVideoFile([...newState]);
-    }
-  };
 
   //console.log(customerInfo)
 
@@ -459,12 +376,17 @@ const SellForm = (props) => {
     const photoPrg = Object.values(photoFilesProgress.product).filter((prg, i) => {
       return i <= photoFiles.length - 1
     });
-    const defPhotoPrg = Object.values(photoFilesProgress.defect).filter((prg, i) => {
-      return i <= defectPhotoFiles.length - 1    
-    })
+    // const defPhotoPrg = Object.values(photoFilesProgress.defect).filter((prg, i) => {
+    //   return i <= defectPhotoFiles.length - 1    
+    // })
     const videoPrg = videoFileProgress.product;
-    const defVideoPrg = videoFileProgress.defect;
-    const allPrg = [...photoPrg, ...defPhotoPrg, ...videoPrg, ...defVideoPrg]    
+  //  const defVideoPrg = videoFileProgress.defect;
+  
+    const allPrg = [...photoPrg,
+    //  ...defPhotoPrg,
+      ...videoPrg,
+    //  ...defVideoPrg
+    ]    
    // console.log(allPrg)
     const allPrgAvg = allPrg.reduce((acc, currVal) => acc + currVal / allPrg.length, 0)
   //  console.log(allPrgAvg)    
@@ -473,7 +395,7 @@ const SellForm = (props) => {
      return setMediaDone(true)
     }
     else{ return setMediaDone(false)}
-  }, [photoFilesProgress, videoFileProgress, photoFiles.length, defectPhotoFiles.length])
+  }, [photoFilesProgress, videoFileProgress, photoFiles.length])
   
   useEffect(() => {
   overallProgressHandler()
@@ -485,28 +407,30 @@ const SellForm = (props) => {
     formData.append("product_id", formId);
     formData.append("name", sellForm.product_name.value);
     formData.append("description", sellForm.description.value);
-    formData.append("selling_price", sellForm.price.value);
-    formData.append("release_date", sellForm.release_date.value);
-    formData.append("product_status", sellForm.product_status.value);
-    formData.append("reason", sellForm.reason.value);
-
-     defectVideoFile[0] &&
-      formData.append(
-        "defect[description]",
-        sellForm.defect_description.value
-      );
-    authContext.userRole === "admin" &&  formData.append(
-        "customer_name",
-        customerInfo.customer_name.value
-      );
-      authContext.userRole === "admin" && formData.append(
-        "customer_phone",
-        customerInfo.customer_phone.value
-    );
-    authContext.userRole === "admin" && formData.append(
-      "customer_email",
-      customerInfo.customer_email.value
-    );
+    formData.append("category_id", sellForm.category.value);
+    formData.append("total_quantity", sellForm.total_quantity.value);
+    formData.append("minimum_order_quantity", sellForm.minimum_quantity.value);
+    formData.append("deal_price", sellForm.deal_price.value);
+    formData.append("deal_end_date", sellForm.deal_end_date.value);
+    formData.append("retail_price", sellForm.retail_price.value);
+    formData.append("retail_price", sellForm.can_restart.value);
+    //  defectVideoFile[0] &&
+    //   formData.append(
+    //     "defect[description]",
+    //     sellForm.defect_description.value
+    //   );
+    // authContext.userRole === "admin" &&  formData.append(
+    //     "customer_name",
+    //     customerInfo.customer_name.value
+    //   );
+    //   authContext.userRole === "admin" && formData.append(
+    //     "customer_phone",
+    //     customerInfo.customer_phone.value
+    // );
+    // authContext.userRole === "admin" && formData.append(
+    //   "customer_email",
+    //   customerInfo.customer_email.value
+    // );
     
     
 
@@ -539,7 +463,7 @@ const SellForm = (props) => {
         });
    
 
-  }, [authContext.token, authContext.userRole, customerInfo.customer_email.value, customerInfo.customer_name.value, customerInfo.customer_phone.value, defectVideoFile, formId, sellForm.defect_description.value, sellForm.description.value, sellForm.price.value, sellForm.product_name.value, sellForm.product_status.value, sellForm.reason.value, sellForm.release_date.value, success])
+  }, [authContext.token, formId, sellForm.can_restart.value, sellForm.category.value, sellForm.deal_end_date.value, sellForm.deal_price.value, sellForm.description.value, sellForm.minimum_quantity.value, sellForm.product_name.value, sellForm.retail_price.value, sellForm.total_quantity.value, success])
  
   
   
@@ -677,26 +601,13 @@ const SellForm = (props) => {
               productPhotoProgress={photoFilesProgress.product}
               productVideoProgress={videoFileProgress.product}
               />
-                        <div className="tooltip-group">
-              <FormToolTip textArrIndex={5} />
-              <Select
-                  options={["Brand new", "Used", "Repair required"]} 
-             label="Product Status"
-             name="product_status"
-             required={true}
-             value={sellForm.product_status.value}
-             onChange={(e) =>
-               inputChangeHandler(e, "product_status", sellForm, setSellForm)
-             }
-             isValid={shouldValidate("product_status")}
-             isInvalid={shouldInValidate("product_status")}  />
-              </div>
+          
              <div className="tooltip-group">
               <FormToolTip textArrIndex={1} />
               <Textbox
                 label="Description"
                 name="description"
-                placeholder="Product type, Size, Colour, Usage duration, etc."
+                placeholder=""
                 required={true}
                 value={sellForm.description.value}
                 onChange={(e) =>
@@ -711,61 +622,111 @@ const SellForm = (props) => {
                    Specifications or materials of item.<br/><br/>
                  <strong>The more descriptive an item the higher its sale potential.</strong> 
                 </p>
-            </div>
-            <div className="tooltip-group">
+              </div>
+              <div className="tooltip-group">
+              <FormToolTip textArrIndex={5} />
+              <Select
+                  options={["Brand new", "Used", "Repair required"]} 
+             label="Category"
+             name="category"
+             required={true}
+             value={sellForm.category.value}
+             onChange={(e) =>
+               inputChangeHandler(e, "category", sellForm, setSellForm)
+             }
+             isValid={shouldValidate("category")}
+             isInvalid={shouldInValidate("category")}  />
+              </div>
+              <div className="tooltip-group">
+              <FormToolTip textArrIndex={2} />
+              <Input
+                label="Total Quantity"
+                controlId="total_quantity"
+                groupClass="price-group"
+                required={true}
+                value={sellForm.total_quantity.value}
+                inputMode="numeric"
+                onChange={(e) => {
+                  inputChangeHandler(e, "total_quantity", sellForm, setSellForm);
+                  currencyDisplay(e);
+                  }}
+                  type="number"
+                isValid={shouldValidate("total_quantity")}
+                isInvalid={shouldInValidate("total_quantity")}
+              />
+              </div>
+              <div className="tooltip-group">
+              <FormToolTip textArrIndex={3} />
+              <Input
+                label="MOQ (Minimum order quantity)"
+                controlId="minimum_quantity"
+                groupClass="price-group"
+                required={true}
+                value={sellForm.minimum_quantity.value}
+                inputMode="numeric"
+                onChange={(e) => {
+                  inputChangeHandler(e, "minimum_quantity", sellForm, setSellForm);
+                  }}
+                  type="number"
+                isValid={shouldValidate("minimum_quantity")}
+                isInvalid={shouldInValidate("minimum_quantity")}
+              />
+              </div>
+              <div className="tooltip-group">
+              {/* <FormToolTip textArrIndex={2} /> */}
+              <Input
+                label="Deal Price"
+                controlId="deal_price"
+                groupClass="price-group"
+                required={true}
+                value={sellForm.deal_price.value}
+                inputMode="numeric"
+                onChange={(e) => {
+                  inputChangeHandler(e, "deal_price", sellForm, setSellForm);
+                  currencyDisplay(e);
+                }}
+                isValid={shouldValidate("deal_price")}
+                isInvalid={shouldInValidate("deal_price")}
+              />
+              </div>
+              <div className="tooltip-group">
               <FormToolTip textArrIndex={4} />
               <Input
-                type="date"
-                label="Release Date"
-                placeholder=""
-                name="release_date"
+                label="Retail Price in Market"
+                controlId="retail_price"
+                groupClass="price-group"
                 required={true}
-                value={sellForm.release_date.value}
+                value={sellForm.retail_price.value}
+                inputMode="numeric"
+                onChange={(e) => {
+                  inputChangeHandler(e, "retail_price", sellForm, setSellForm);
+                  currencyDisplay(e);
+                }}
+                isValid={shouldValidate("retail_price")}
+                isInvalid={shouldInValidate("retail_price")}
+              />
+              </div>
+            <div className="tooltip-group">
+              <FormToolTip textArrIndex={5} />
+              <Input
+                type="date"
+                label="Deal End date"
+                placeholder=""
+                name="deal_end_date"
+                required={true}
+                value={sellForm.deal_end_date.value}
                 min={todayDate()}
                 onChange={(e) =>{
                   console.log(e.target.value);
-                  inputChangeHandler(e, "release_date", sellForm, setSellForm)}
+                  inputChangeHandler(e, "deal_end_date", sellForm, setSellForm)}
                 }
-                isValid={shouldValidate("release_date")}
-                isInvalid={shouldInValidate("release_date")}
+                isValid={shouldValidate("deal_end_date")}
+                isInvalid={shouldInValidate("deal_end_date")}
                 onBlur={(e)=>titleSetHandler(e)}
               />
               </div>
-              <div>   
-              <Textbox
-                label="Reason for selling"
-                name="reason"
-                placeholder=""
-                required={true}
-                value={sellForm.reason.value}
-                onChange={(e) =>
-                  inputChangeHandler(e, "reason", sellForm, setSellForm)
-                }
-                isValid={shouldValidate("reason")}
-                  isInvalid={shouldInValidate("reason")}
-                  rows={2}
-                />
-          
-      </div>
-            <div className="tooltip-group">
-              <FormToolTip textArrIndex={2} />
-              <Input
-                label="Selling Price"
-                controlId="price"
-                groupClass="price-group"
-                required={true}
-                value={sellForm.price.value}
-                inputMode="numeric"
-                onChange={(e) => {
-                  inputChangeHandler(e, "price", sellForm, setSellForm);
-                  currencyDisplay(e);
-                }}
-                isValid={shouldValidate("price")}
-                isInvalid={shouldInValidate("price")}
-              />
-              </div>
               
-        { authContext.userRole==="admin" &&  <>
+        {/* { authContext.userRole==="admin" &&  <>
               <div className="tooltip-group">
         
               <Input
@@ -816,97 +777,29 @@ const SellForm = (props) => {
           
       </div>
               </>}
-              
+               */}
 
             <div className="tooltip-group mt-3 mb-4">
-              <FormToolTip textArrIndex={3} />
+              <FormToolTip textArrIndex={6} />
               <Checkbox
-                label="This product has some defects"
+                label="Allow customers restart this deal"
                 onChange={(e) => {
-                  handleDefectMode(e.target.checked);
+                  inputChangeHandler(e, "can_restart", sellForm, setSellForm);
                 }}
-                value={defected}
-                checked={defected}
-                controlId="defectCheck"
+                value={sellForm.can_restart.value}
+                checked={sellForm.can_restart.value}
+                controlId="can_restart"
               />
-            </div>
-
-            <Collapse in={defected}>
-              <div className="p-0">
-                
-                <div className="d-flex justify-content-between">
-                  <FileInput
-                    label="Add defect video"
-                    //capture="environment"
-                    accept="video/*"
-                    onChange={(e) => {
-                      videoPreviewHandler(e, "defect");
-                      inputChangeHandler(
-                        e,
-                        "defect_video",
-                        sellForm,
-                        setSellForm
-                      );
-                    }}
-                    name="defect_video"
-                    errorStatus={formTouched && !sellForm.defect_video.valid}
-                  />
-
-                  <FileInput
-                    label="Add defect pictures"
-                    //capture="environment"
-                    accept="image/*"
-                    type="photo"
-                    onChange={(e) => {
-                      imagePreviewHandler(e, "defect");
-                      inputChangeHandler(
-                        e,
-                        "defect_images",
-                        sellForm,
-                        setSellForm
-                      );
-                    }}
-                    errorStatus={formTouched && !sellForm.defect_images.valid}
-                    name="defect_images"
-                  />
-                </div>
-                
-                <MediaPreview
-                  photos={defectPhotoFiles.map((f) => f.data)}
-                  removeHandler={defectRemoveHandler}
-                  video={defectVideoFile.map((f) => f.data)}
-                  productPhotoProgress={photoFilesProgress.defect}
-                  productVideoProgress={videoFileProgress.defect}
-                />
-
-                <div>
-                  <Textbox
-                    label="Defect description"
-                    required={true}
-                    placeholder="Nature of defect, Cause, Defect duration, etc."
-                    value={sellForm.defect_description.value}
-                    onChange={(e) =>
-                      inputChangeHandler(
-                        e,
-                        "defect_description",
-                        sellForm,
-                        setSellForm
-                      )
-                    }
-                    isValid={shouldValidate("defect_description")}
-                    isInvalid={shouldInValidate("defect_description")}
-                  />
-                </div>
               </div>
-            </Collapse>
-            {formTouched && sellForm.formValidity === false && (
+              
+              {formTouched && sellForm.formValidity === false && (
               <p className="text-danger text-center error-text font-weight-bolder">
                 Kindly review your inputs
               </p>
             )}
             <div className="form-submit">
               <Button
-                className="submit-btn btn btn-dark p-3 w-100"
+                className="submit-btn secondary-btn p-3 w-100"
                 disabled={formLoading}
                 type="submit"
               >

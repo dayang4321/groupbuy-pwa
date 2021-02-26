@@ -73,7 +73,7 @@ export function FileInput(props) {
             <Form.File className="file" {...inputProps} label={label}
                 ref={input => {inputFile = input}} />
             <div onClick={uploadClick} className="text-center">{svg}</div>
-            <p className="text-center mt-3 mb-0">{label}</p>
+            <p className="text-center primary-text mt-3 mb-0">{label}</p>
         </Form.Group>
     )
 } 

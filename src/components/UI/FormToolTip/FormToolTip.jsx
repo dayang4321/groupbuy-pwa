@@ -6,11 +6,12 @@ import './FormToolTip.css'
 
 
 const tooltipTextArr = [<span>It’s important to properly name your product so as to help make it easy for people to find your product.</span>,
-    <span>Declutter products are majorly pre-owned products and our buyers know this, they would like to know why the products are being sold to further improve their confidence in the sale.</span>,
-    <span>Declutter pricing system advices that prices posted on our platform is way lower than the average market price. This encourages people buy faster.</span>,
-  <span>Declutter ensures transparency in every sale. Sellers are required to catalogue pictures of any defect on their product and this would help prevent issues of returns after sale.<br /> Several buyers are comforatable buying products with defects and fixing as long as the price is right. So this doesn’t reduce your chances of sale.</span>,
-  <span>Declutter allows you put up products that are not ready to be released immediately and gives you the flexiblity of letting the buyer know exactly when the product will be released.</span>,
-  <span>Declutter requires our sellers add any extra explanations about the status of poduct in the description  e.g. brand new but no carton, in working condition but compressor needs to be fixed etc.</span>
+    <span>GroupBuy requires the products are fully detailed, giving the specification that is necessary for the product to be properly understood by people who are interested in this deal</span>,
+    <span>This is total number of units required to make the purchase work. The deal would be open to people to join until this number is reached. After this the order is made and deal closed.</span>,
+  <span>This is the minimum amount a buyer can get to take advantage of the deal.</span>,
+  <span>This is the actual amount for for a single unit of this item in regular markets and other platforms. This helps the buyers appreciate the deals much more when they compare.</span>,
+  <span>This is the set date for this deal to close and if the deal amount isn’t hit by then, the transaction is canceled and all buyers are fully refunded.</span>,
+  <span>After a deal is completed, you can allow interested buyers to restart the deal. You would be notified if this a buyer wants to restart your deal. The deal would have the same details you have provided unless you change it.</span>,
 ]
 
 

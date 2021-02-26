@@ -35,7 +35,7 @@ font-weight: 300;
 .my-input label:not(.custom-control-label){
     display: inline-block;
     margin-bottom: 3px;
-    color: var(--dark-color);
+    color: var(--primary-color);
     font-family: var(--second-font-family);
 font-weight: 600;
 margin-left: 24px;
