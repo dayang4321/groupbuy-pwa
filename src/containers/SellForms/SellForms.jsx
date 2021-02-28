@@ -8,6 +8,7 @@ import { Select } from "../../components/UI/Input/Input";
 import Axios, { setAuthToken } from "../../groupbuy-axios-base"
 import { AuthContext } from "../../context/AuthContext";
 import { Fade } from "react-bootstrap";
+import Profile from "../Profile/Profile";
 
 function SellForms(props) {
 
@@ -21,9 +22,9 @@ function SellForms(props) {
 
   const [sellFormsArr, setSellFormsArr] = useState([]);
 
-  const [isHeard, setIsHeard] = useState(!!localStorage.getItem('isDeclutterHeard'))
+  // const [isHeard, setIsHeard] = useState(!!localStorage.getItem('isDeclutterHeard'))
 
-  const [heardLoading, setHeardLoading] = useState(false)
+  // const [heardLoading, setHeardLoading] = useState(false)
 
   // const formIndex = sellFormsArr.length;
 
@@ -67,33 +68,33 @@ function SellForms(props) {
   };
 
 
-  const heardSubmit = (value) => {
-    console.log('heard',value)
-    if (!!value) {
-      setHeardLoading(true)
-      setTimeout(() => {
+  // const heardSubmit = (value) => {
+  //   console.log('heard',value)
+  //   if (!!value) {
+  //     setHeardLoading(true)
+  //     setTimeout(() => {
         
-      setAuthToken(authContext.token)
-      Axios.post('/how-you-heard-about-us', {platform: value})
-      .then(
-          res => {
+  //     setAuthToken(authContext.token)
+  //     Axios.post('/how-you-heard-about-us', {platform: value})
+  //     .then(
+  //         res => {
   
-          localStorage.setItem('isDeclutterHeard', true);     
-          setHeardLoading(false);
-          setIsHeard(true);
-          }
-  )
-      .catch(error => {
-        error.response ? alert(error.response.data.message) : alert(error.message);
-        setHeardLoading(false)
-      });
-      }, 2000);
+  //         localStorage.setItem('isDeclutterHeard', true);     
+  //         setHeardLoading(false);
+  //         setIsHeard(true);
+  //         }
+  // )
+  //     .catch(error => {
+  //       error.response ? alert(error.response.data.message) : alert(error.message);
+  //       setHeardLoading(false)
+  //     });
+  //     }, 2000);
 
-    }
+  //   }
 
-    else return
+  //   else return
    
-  }
+  // }
 
   useEffect(() => {
     const formArr = isOpenArr.map((bool, index) => {
@@ -112,25 +113,26 @@ function SellForms(props) {
   }, [isOpenArr, openHandler]);
 
   const completeMsg = (
-    <div className="text-center">
-      <img className="tick-svg mx-auto" src={Tick} alt="tick" />
+    <Fade in appear timeout={500}>
+         <div className="text-center">
+      <img width={200} height={300} className="tick-svg mx-auto" src={Tick} alt="tick" />
       <h2 className="text-left">
-        You would be notified once your product is verified
+      You would be notified once your deal is accepted
       </h2>
       <button
-        className="another-btn w-100 text-center btn bg-transparent"
+        className="another-btn w-100 pr-3 mb-5 text-center btn bg-transparent"
         onClick={(e) => {
           e.preventDefault();
 
           addProductHandler();
           console.log(sellFormsArr);
         }}
-        disabled={heardLoading}
+       // disabled={heardLoading}
       >
         <PlusCircle className="mr-3" />
-        Add another product
+        Create new deal
       </button>
-      <Fade in={!isHeard}>
+      {/* <Fade in={!isHeard}>
 
       <div className="mt-3 text-left">
       <Select
@@ -142,9 +144,11 @@ function SellForms(props) {
         />
     
       </div>
-      </Fade>
+      </Fade> */}
     </div>
-  );
+  
+    </Fade>
+ );
 
   //console.log(isOpenArr, formIndex, sellFormsArr )
 
@@ -153,6 +157,7 @@ function SellForms(props) {
       {!isSuccess && <h2 className="mb-4 primary-text">Lets help you create a bulk deal.</h2>}
 
       {isSuccess ? completeMsg : sellFormsArr}
+      {/* <Profile/> */}
     </div>
   );
 }

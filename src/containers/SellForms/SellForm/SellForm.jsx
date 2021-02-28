@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useCallback, useMemo } from "react";
 import FormToolTip from "../../../components/UI/FormToolTip/FormToolTip";
-import Input, {Checkbox, FileInput,Select,Textbox,} from "../../../components/UI/Input/Input";
+import Input, {Checkbox, FileInput,ReactSelect,Textbox,} from "../../../components/UI/Input/Input";
 import { Collapse } from "react-bootstrap";
 import { AuthContext } from "../../../context/AuthContext";
 import { FormContext } from "../../../context/FormContext";
@@ -110,15 +110,15 @@ const SellForm = (props) => {
       touched: false,
     },
     deal_end_date: {
-      value: todayDate(),
+      value: "",
       validation: {
-        required: false,
+        required: true,
       },
       valid: true,
       touched: false,
     },
     can_restart: {
-      value: "",
+      value: false,
       validation: {
         required: false,
       },
@@ -304,6 +304,8 @@ const SellForm = (props) => {
     }
   };
 
+  console.log(sellForm)
+
   const videoPreviewHandler = (e, type) => {
     if (e.target.files[0]) {
       let file = e.target.files[0];
@@ -413,7 +415,7 @@ const SellForm = (props) => {
     formData.append("deal_price", sellForm.deal_price.value);
     formData.append("deal_end_date", sellForm.deal_end_date.value);
     formData.append("retail_price", sellForm.retail_price.value);
-    formData.append("retail_price", sellForm.can_restart.value);
+    formData.append("can_restart", !!sellForm.can_restart.value? 1 : 0);
     //  defectVideoFile[0] &&
     //   formData.append(
     //     "defect[description]",
@@ -624,18 +626,19 @@ const SellForm = (props) => {
                 </p>
               </div>
               <div className="tooltip-group">
-              <FormToolTip textArrIndex={5} />
-              <Select
-                  options={["Brand new", "Used", "Repair required"]} 
+              <ReactSelect
+                  options={formContext.categoryOptions} 
              label="Category"
              name="category"
-             required={true}
-             value={sellForm.category.value}
-             onChange={(e) =>
-               inputChangeHandler(e, "category", sellForm, setSellForm)
-             }
-             isValid={shouldValidate("category")}
-             isInvalid={shouldInValidate("category")}  />
+                  required={true}
+                  prefix="sellSelect"
+            // value={sellForm.category.value}
+            //  onChange={(e) =>
+            //    inputChangeHandler(e, "category", sellForm, setSellForm)
+            //  }
+            //  isValid={shouldValidate("category")}
+            //       isInvalid={shouldInValidate("category")}
+                />
               </div>
               <div className="tooltip-group">
               <FormToolTip textArrIndex={2} />
@@ -648,7 +651,6 @@ const SellForm = (props) => {
                 inputMode="numeric"
                 onChange={(e) => {
                   inputChangeHandler(e, "total_quantity", sellForm, setSellForm);
-                  currencyDisplay(e);
                   }}
                   type="number"
                 isValid={shouldValidate("total_quantity")}

@@ -9,6 +9,7 @@ export const FormContext = React.createContext({
   resetPrefill: () => {},
   setNeedsComplete: () => {},
   isInCompleteLoading: true,
+  categoryOptions: []
 });
 
 const FormContextProvider = (props) => {
@@ -27,6 +28,9 @@ const FormContextProvider = (props) => {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [categoryOptions, setCategoryOptions] = useState([])
+
 
   const authContext = useContext(AuthContext);
 
@@ -73,6 +77,38 @@ const FormContextProvider = (props) => {
                 .catch((err) => {
                     alert(err.message)
                 })
+          
+          Axios.get('/categories')
+            .then(res => {
+              // console.log(res.data);
+              const dbOptions = res.data.data;
+
+              let optionsArr = [];
+
+              dbOptions.map((x, i) => {
+
+                if (x.id === 1) {
+                  return optionsArr.push(
+                    {label: x.display_name, options: [] }
+                  )
+                }
+
+               else if (x.parent_id===1) {
+                  return optionsArr[0].options.push(
+                    {label: x.display_name, value: x.id }
+                  )
+                }
+
+                return optionsArr.push(
+                  {label: x.display_name, value: x.id }
+                )
+              })
+
+             // console.log(optionsArr)
+
+              setCategoryOptions([...optionsArr])
+
+            })
         }
   }, [authContext ]);
 
@@ -108,6 +144,7 @@ const FormContextProvider = (props) => {
         resetPrefill: resetPrefillHandler,
         setNeedsComplete: setNeedsCompleteHandler,
         isInCompleteLoading: isLoading,
+        categoryOptions: categoryOptions
       }}
     >
       {props.children}

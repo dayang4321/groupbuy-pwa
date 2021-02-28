@@ -44,14 +44,14 @@ const authFormObj = {
         valid: false,
         touched: false
     },
-    isAgreed: {
-        value: false,
-        validation: {
-            mustCheck: true,
-        },
-        valid: false,
-        touched: false
-      },
+    // isAgreed: {
+    //     value: false,
+    //     validation: {
+    //         mustCheck: true,
+    //     },
+    //     valid: false,
+    //     touched: false
+    //   },
 
      formValidity: false
 }
@@ -130,7 +130,7 @@ const Auth = (props) => {
                     onChange={(e) => inputChangeHandler(e, "address", authForm, setAuthForm)}
                     isValid={shouldValidate("address")}
                     isInvalid={shouldInValidate("address")} />
-                 <Checkbox
+                 {/* <Checkbox
                 label="I agree to Declutter.ng's"
                 onChange={(e) => {
                     inputChangeHandler(e, "isAgreed", authForm, setAuthForm)
@@ -141,7 +141,7 @@ const Auth = (props) => {
                     isValid={shouldValidate("isAgreed")}
                     isInvalid={shouldInValidate("isAgreed")}
                     controlId="isAgreed"
-              />
+              /> */}
         
                 <Button className="submit-btn secondary-btn mb-3 p-3 w-100" disabled={authContext.authLoading} type="submit">{authContext.authLoading ? 'Starting...' : ' Start Selling'}</Button>
             </form>

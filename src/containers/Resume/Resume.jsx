@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { ReactComponent as PlusCircle } from "../../assets/img/svg/plus-circle.svg";
+import { ReactComponent as PlusCircle } from "../../assets/img/svg/plus-circle-white.svg";
 import { AuthContext } from '../../context/AuthContext';
 import { FormContext } from '../../context/FormContext';
 import Axios,{ setAuthToken } from '../../groupbuy-axios-base';
@@ -34,17 +34,17 @@ const Resume = (props) => {
 
         <div className="py-5">
             <h2>Welcome back,</h2>
-            <p className="mt-4 font-weight-semibold">You didn’t finish your product upload.</p>
+            <p className="mt-4 font-weight-semibold">You didn’t finish creating your deal.</p>
 
         <Button className="another-btn continue-btn  w-100 mt-2 py-4 bg-transparent"
         onClick={()=>setResume(true)}
         > <span>{formContext.incompleteData.name}</span></Button>
 
             <button
-        className="another-btn w-100 text-center btn bg-dark text-white"
+        className="another-btn w-100 text-center btn secondary-btn text-white"
         onClick={() => setModalShow(true)}>
         <PlusCircle className="mr-3" stroke="#FFF"/>
-        Add another product
+        Create new deal
       </button>
       <MyVerticallyCenteredModal
         show={modalShow}

@@ -7,7 +7,8 @@
   --primary-color: #9E1946;
   --primary-light-color: #F73C7B;
   --secondary-color:#173a36;
-  --light-color: #FFFFFF; 
+  --light-color: #FFFFFF;   
+  --form-gray: #656565;
 
   --main-font-family: 'Roboto', Helvetica, Arial , sans-serif;
   --second-font-family: 'Public Sans','Roboto', Helvetica, Arial  sans-serif;
@@ -99,7 +100,16 @@ background-color: #000000;
     transform: scale(1.02);
   }
 
-  .secondary-btn.btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+  .secondary-btn:focus{
+    background-color:var(--secondary-color);
+    border: none;
+    box-shadow: 0 0 0 0.2rem rgb(23 58 54 / 50%);
+  }
+
+
+
+  .secondary-btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+   .show>.btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgb(23 58 54 / 50%);
 }
 
@@ -109,11 +119,24 @@ background-color: #000000;
 }
 
 .another-btn{
-  border: 5px solid #000000;
+  border: 5px solid var(--secondary-color);
 border-radius: 10px;
 font-family: var(--second-font-family);
 font-weight: 600;
 margin-top: 9vw;
-color: var(--dark-color);
+color: var(--secondary-color);
+padding:2.5vw 0vw;
+}
+
+.another-btn:hover,
+.another-btn:focus{
+  border: 5px solid var(--secondary-color);
+color: var(--secondary-color);
+box-shadow: 0 0 0 0.2rem rgb(23 58 54 / 50%);
+}
+
+.secondary-btn.another-btn{
+  border: 5px solid var(--secondary-color);
+color: var(--light-color);
 padding:2.5vw 0vw;
 }

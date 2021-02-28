@@ -19,8 +19,8 @@ export const AuthContext = React.createContext({
 
 const AuthContextProvider = props => {
 
-    const authToken = localStorage.getItem('declutterAuthToken');
-    const expTime = localStorage.getItem('declutterAuthExpiry')
+    const authToken = localStorage.getItem('groupbuyAuthToken');
+    const expTime = localStorage.getItem('groupbuyAuthExpiry')
     let isAuthValid;
     //let authTimeout; 
     
@@ -40,7 +40,7 @@ const AuthContextProvider = props => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(authToken && isAuthValid);
 
-    const [token, setToken] = useState(localStorage.getItem('declutterAuthToken'));
+    const [token, setToken] = useState(localStorage.getItem('groupbuyAuthToken'));
 
     const [authLoading, setAuthLoading] = useState(false);
 
@@ -51,8 +51,8 @@ const AuthContextProvider = props => {
     const logoutHandler = () => {
         //console.log('outed')
         setToken(null);
-        localStorage.removeItem('declutterAuthToken');
-        localStorage.removeItem('declutterAuthExpiry')
+        localStorage.removeItem('groupbuyAuthToken');
+        localStorage.removeItem('groupbuyAuthExpiry')
         setIsAuthenticated(false);
        // history.push('/auth')
     }
@@ -96,8 +96,8 @@ const AuthContextProvider = props => {
                     const token = res.data.data.access_token;
                     const role = res.data.data.user.role;
 
-                    localStorage.setItem('declutterAuthToken', token);
-                    localStorage.setItem('declutterAuthExpiry',1640098800000);
+                    localStorage.setItem('groupbuyAuthToken', token);
+                    localStorage.setItem('groupbuyAuthExpiry',1640098800000);
                     setToken(token);
                     userRoleHandler(role);
                     setIsAuthenticated(true);   

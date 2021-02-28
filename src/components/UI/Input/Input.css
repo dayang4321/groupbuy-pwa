@@ -11,7 +11,7 @@
     color: var(--dark-color);
     background-color: transparent;
     background-clip: padding-box;
-    border: 5px solid var(--dark-color);
+    border: 5px solid var(--form-gray);
     border-radius: 10px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -19,7 +19,7 @@
 .my-input .form-control::placeholder{
     font-family: var(--second-font-family);
 font-style: italic;
-color: var(--dark-color);
+color: var(--form-gray);
 font-size: 14px;
 font-weight: 300;
 }
@@ -27,7 +27,7 @@ font-weight: 300;
 .my-input .form-control:focus {
     color: var(--dark-color);
     background-color:transparent;
-    border-color: #000000;
+    border-color: #353535;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
 }
@@ -52,7 +52,7 @@ margin-left: 24px;
     background: #fff url(../../../assets/img/svg/select-arrow.svg) no-repeat right .75rem center/8px 10px;
     border-radius: 10px;
     background-color: transparent;
-    border: 5px solid var(--dark-color);
+    border: 5px solid var(--form-gray)
 }
 
 .custom-select:disabled {
@@ -63,7 +63,7 @@ margin-left: 24px;
 .custom-select:focus {
     color: var(--dark-color);
     background-color:transparent;
-    border-color: #000000;
+    border-color: var(--form-gray);
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
 }
@@ -97,7 +97,7 @@ margin-left: 24px;
     
 }
 .my-input .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
-    border: 5px solid black;
+    border: 5px solid var(--form-gray);
     border-radius: 35%;
     background: transparent;
     background-image: none;
@@ -107,7 +107,7 @@ margin-left: 24px;
     color: #fff;
     border-radius: 45%;
     /* border-color: #FFF; */
-    background-color: black;
+    background-color: var(--form-gray);
 }
 
 .my-input .custom-checkbox .custom-control-label::before {
@@ -115,7 +115,7 @@ margin-left: 24px;
 }
 
 .my-input .custom-control-label{
-    color: var(--dark-color);
+    color: var(--form-gray);
     margin-left: 23px;
     font-family: var(--second-font-family);
     font-weight: 600;
@@ -131,7 +131,7 @@ margin-left: 24px;
     pointer-events: none;
     content: "";
     background-color: #fff;
-    border: 5px solid #000000;
+    border: 5px solid var(--form-gray);
     border-radius: 5px;
 }
 
