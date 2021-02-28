@@ -101,7 +101,7 @@ const AuthContextProvider = props => {
                     setToken(token);
                     userRoleHandler(role);
                     setIsAuthenticated(true);   
-                    history.push('/seller')
+                    history.push('/resume')
                 }
         )
             .catch(error => {

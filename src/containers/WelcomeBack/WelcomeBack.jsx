@@ -5,10 +5,10 @@ import { AuthContext } from '../../context/AuthContext';
 import { FormContext } from '../../context/FormContext';
 import Axios,{ setAuthToken } from '../../groupbuy-axios-base';
 
-import './Resume.css'
+import './WelcomeBack.css'
 
 
-const Resume = (props) => {
+const WelcomeBack = (props) => {
 
   const { setResume } = props;
 
@@ -32,8 +32,8 @@ const Resume = (props) => {
 
     return (
 
-        <div className="py-5">
-            <h2>Welcome back,</h2>
+        <div className="py-5 welcome-container">
+            <h1>Welcome back,</h1>
             <p className="mt-4 font-weight-semibold">You didn’t finish creating your deal.</p>
 
         <Button className="another-btn continue-btn  w-100 mt-2 py-4 bg-transparent"
@@ -56,7 +56,7 @@ const Resume = (props) => {
     );
 }
 
-export default Resume;
+export default WelcomeBack;
 
 function MyVerticallyCenteredModal(props) {
   const { incompleteDelete, ...modalProps} = props;
@@ -71,8 +71,8 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Body>
           <p className="text-white m-0">
-         Adding a new product would totally delete the the previously uncompleted upload.  
-        Are you sure you want to proceed?
+            Creating a new deal would totally delete the the previously uncompleted upload.
+            Are you sure you want to proceed?
           </p>
         </Modal.Body>
         <Modal.Footer>

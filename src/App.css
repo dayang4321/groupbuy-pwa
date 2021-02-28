@@ -1,4 +1,4 @@
-.App{
+/* .App{
     display: none;
 }
 
@@ -11,14 +11,14 @@
     font-size: 1.4vw;
     font-weight: 700;
     font-family: var(--second-font-family);
-}
+} */
 
 @media screen and (max-width:601px) 
  /* and (pointer:coarse) and (hover:none), (hover:on-demand)  */
 { 
     /* custom css for "touch targets" */
 
-    .App{
+    /* .App{
         display: unset;
     }
     
@@ -32,5 +32,5 @@
         font-size: 1.4vw;
         font-weight: 700;
         font-family: var(--second-font-family);
-    }
+    } */
   }

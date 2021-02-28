@@ -6,11 +6,18 @@ import { ToastContainer, Slide } from "react-toastify";
 
 import './Layout.css'
 import { AuthContext } from '../../context/AuthContext';
+import { useLocation } from 'react-router';
 
 
 function Layout(props) {
 
+    console.log(window.screen.availHeight,window.screen.availWidth
+
+        )
+
     const authContext = useContext(AuthContext)
+
+    const location = useLocation()
     return (
         <>
             <Header />
@@ -27,7 +34,8 @@ function Layout(props) {
         draggable
         pauseOnHover
       />
-            <main className={authContext.isAuth? '' : 'start-bg'}>
+            <main className={authContext.isAuth ? '' : 'start-bg'}
+            data-page={location.pathname}>
                 {props.children}
                 </main>
         <Footer/>
