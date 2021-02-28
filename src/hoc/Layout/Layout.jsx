@@ -11,10 +11,6 @@ import { useLocation } from 'react-router';
 
 function Layout(props) {
 
-    console.log(window.screen.availHeight,window.screen.availWidth
-
-        )
-
     const authContext = useContext(AuthContext)
 
     const location = useLocation()

@@ -8,7 +8,7 @@ import { Select } from "../../components/UI/Input/Input";
 import Axios, { setAuthToken } from "../../groupbuy-axios-base"
 import { AuthContext } from "../../context/AuthContext";
 import { Fade } from "react-bootstrap";
-import Profile from "../Profile/Profile";
+import ProfileForm from "../ProfileForm/ProfileForm";
 
 function SellForms(props) {
 
@@ -154,8 +154,8 @@ function SellForms(props) {
 
   return (
     <div>
-      {isSuccess ? completeMsg : sellFormsArr}
-      {/* <Profile/> */}
+      {/* {isSuccess ? completeMsg : sellFormsArr} */}
+    <ProfileForm />
     </div>
   );
 }

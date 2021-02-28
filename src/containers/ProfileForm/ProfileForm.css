@@ -1,0 +1,54 @@
+
+
+
+
+
+    @media (min-width:991.98px) {
+        .profile-inner{
+            max-width: 785px;
+            margin: auto;
+            padding: 10vh 0;
+            padding: min(10vh,140px) 0;
+            }
+
+            .profile-container{
+             width: 73%;
+                }
+
+            .profile-bg{
+                width: 27%;
+                background-image:url(../../assets/img/profile-bg.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+            #profileForm .form-group{
+             margin-bottom: 2rem;
+                }
+
+                #profileForm .col{
+                  padding: 0 2rem;
+                       }
+
+                       #profileForm  .custom-checkbox .custom-control-label > span{
+                        display: block;
+                        margin-top: -0.75rem;
+                        margin-left: 0.75rem;
+         }
+
+    }
+
+    @media (min-width:1444.98px) {
+   
+
+            .profile-container{
+             width: 65%;
+                }
+
+            .profile-bg{
+                width: 35%;
+            }
+
+
+    }
+
