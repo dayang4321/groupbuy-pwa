@@ -4,3 +4,11 @@ header{
     text-align: center;
   padding: 1.5vw;
 }
+
+header > .contact-link.buyer-link {
+  color: #FFF;
+  border-color: #FFF;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+}
