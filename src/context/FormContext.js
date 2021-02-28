@@ -9,12 +9,16 @@ export const FormContext = React.createContext({
   resetPrefill: () => {},
   setNeedsComplete: () => {},
   isInCompleteLoading: true,
-  categoryOptions: []
+  categoryOptions: [],
+  isResumed: false,
+  setIsResumed: () => {
+    
+  }
 });
 
 const FormContextProvider = (props) => {
   //Does the product need completing?
-  const [needsCompleting, setNeedsCompleting] = useState(false);
+  const [needsCompleting, setNeedsCompleting] = useState(true);
   //Product data
   const [incompleteData, setIncompleteData] = useState({
     productId: "",
@@ -30,6 +34,8 @@ const FormContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [categoryOptions, setCategoryOptions] = useState([])
+
+  const [isResumed, setIsResumed] = useState(false);
 
 
   const authContext = useContext(AuthContext);
@@ -144,7 +150,9 @@ const FormContextProvider = (props) => {
         resetPrefill: resetPrefillHandler,
         setNeedsComplete: setNeedsCompleteHandler,
         isInCompleteLoading: isLoading,
-        categoryOptions: categoryOptions
+        categoryOptions: categoryOptions,
+        isResumed: isResumed,
+        setIsResumed: setIsResumed,
       }}
     >
       {props.children}

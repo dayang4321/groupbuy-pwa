@@ -6,6 +6,7 @@
     /* height: calc(1.5em + .75rem + 2px); */
     font-weight: 500;
     font-family: var(--second-font-family);
+    font-size: 14px;
     padding: 5px .75rem;
     line-height: 1.5;
     color: var(--dark-color);
@@ -39,6 +40,7 @@ font-weight: 300;
     font-family: var(--second-font-family);
 font-weight: 600;
 margin-left: 24px;
+font-size: 14px;
 }
 .custom-select {
     width: 100%;
@@ -172,3 +174,17 @@ input[type='date']{
     padding-right: 30px
 }
 
+
+
+@media (min-width: 991.98px) {
+    .my-input label:not(.custom-control-label){
+    font-size: 18px;
+    margin-bottom: 9px;
+    }
+
+    .my-input .form-control {
+        font-size: 1.25rem;
+    }
+
+  
+}

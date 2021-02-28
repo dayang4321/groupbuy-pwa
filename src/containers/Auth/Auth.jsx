@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext'
 import {inputChangeHandler} from '../../shared/utility'
 // import { useHistory } from "react-router-dom";
 
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 import './Auth.css'
 
@@ -110,43 +110,67 @@ const Auth = (props) => {
 
 
     return (
-        <div className="d-flex align-items-center w-100 h-100 justify-content-center">       
-        <form className="w-100" noValidate id="signinForm" onSubmit={handleSubmit}>
-                <Input label="Name" type="text" value={authForm.name.value} name="name" required={true}
-                    onChange={(e) => inputChangeHandler(e, "name", authForm, setAuthForm)}
-                    isValid={shouldValidate("name")}
-                    isInvalid={shouldInValidate("name")}                 
-                />
-                <Input label="Email Address" type="email" value={authForm.email.value} required={true}
-                    onChange={(e) => inputChangeHandler(e, "email", authForm, setAuthForm)}
-                    isValid={shouldValidate("email")}
-                    isInvalid={shouldInValidate("email")} />
-                <Input label="Phone Number"  type="tel" value={authForm.phone.value} required={true}
-                    onChange={(e) => inputChangeHandler(e, "phone", authForm, setAuthForm)}
-                    isValid={shouldValidate("phone")}
-                    isInvalid={shouldInValidate("phone")} />
-                <Textbox label="Pickup Address" value={authForm.address.value} required={true}
-                    rows={2}
-                    onChange={(e) => inputChangeHandler(e, "address", authForm, setAuthForm)}
-                    isValid={shouldValidate("address")}
-                    isInvalid={shouldInValidate("address")} />
-                 {/* <Checkbox
-                label="I agree to Declutter.ng's"
-                onChange={(e) => {
-                    inputChangeHandler(e, "isAgreed", authForm, setAuthForm)
-                }}
-                value={authForm.isAgreed.value}
-                    link="https://declutter.ng/index.php?route=pages/terms_seller" 
-                    linkText="Terms &amp; Conditions"
-                    isValid={shouldValidate("isAgreed")}
-                    isInvalid={shouldInValidate("isAgreed")}
-                    controlId="isAgreed"
-              /> */}
-        
-                <Button className="submit-btn secondary-btn mb-3 p-3 w-100" disabled={authContext.authLoading} type="submit">{authContext.authLoading ? 'Starting...' : ' Start Selling'}</Button>
-            </form>
-        </div>
-    );
+        <div className="start-container">
+
+            <h1 className="mb-4 text-white">
+            Get buyers for bulk purchase deals.
+         </h1>
+            <div className="d-flex align-items-center w-100 h-100 justify-content-center">       
+                <form className="w-100 row row-cols-1 row-cols-md-2" noValidate id="signinForm" onSubmit={handleSubmit}>
+
+                    <Col>
+                    <Input label="Name" type="text" value={authForm.name.value} name="name" required={true}
+                        onChange={(e) => inputChangeHandler(e, "name", authForm, setAuthForm)}
+                        isValid={shouldValidate("name")}
+                        isInvalid={shouldInValidate("name")}                 
+                    />
+                    </Col>
+                    <Col>
+                    <Input label="Email Address" type="email" value={authForm.email.value} required={true}
+                        onChange={(e) => inputChangeHandler(e, "email", authForm, setAuthForm)}
+                        isValid={shouldValidate("email")}
+                        isInvalid={shouldInValidate("email")} />
+                    </Col>
+                    <Col>                         
+                    <Input label="Phone Number"  type="tel" value={authForm.phone.value} required={true}
+                        onChange={(e) => inputChangeHandler(e, "phone", authForm, setAuthForm)}
+                        isValid={shouldValidate("phone")}
+                        isInvalid={shouldInValidate("phone")} />
+                    </Col>
+                    <Col>
+                    <Textbox label="Pickup Address" value={authForm.address.value} required={true}
+                        rows={2}
+                        onChange={(e) => inputChangeHandler(e, "address", authForm, setAuthForm)}
+                        isValid={shouldValidate("address")}
+                        isInvalid={shouldInValidate("address")} />
+                    </Col>
+                
+                
+                  
+                     {/* <Checkbox
+                    label="I agree to Declutter.ng's"
+                    onChange={(e) => {
+                        inputChangeHandler(e, "isAgreed", authForm, setAuthForm)
+                    }}
+                    value={authForm.isAgreed.value}
+                        link="https://declutter.ng/index.php?route=pages/terms_seller" 
+                        linkText="Terms &amp; Conditions"
+                        isValid={shouldValidate("isAgreed")}
+                        isInvalid={shouldInValidate("isAgreed")}
+                        controlId="isAgreed"
+                  /> */}
+                    <Col className="ml-auto">
+                    <Button className="submit-btn secondary-btn mb-3 p-3 w-100"
+                        disabled={authContext.authLoading} type="submit">{authContext.authLoading ? 'Starting...' : ' Start Selling'}
+                    </Button>
+                    </Col>
+            
+                   
+                </form>
+            </div>
+            </div>
+        );
+      
 }
 
 export default Auth;

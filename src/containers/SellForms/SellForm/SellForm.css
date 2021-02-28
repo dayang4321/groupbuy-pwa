@@ -1,6 +1,6 @@
 .tooltip-group{
     position: relative;
-    padding: 10px 0 0 0;
+    padding-top: 1rem;
 }
 
 
@@ -207,6 +207,70 @@ align-self: stretch;
     display: flex;
     padding: 0.7em 2em;
 }
+
+.react-select .sellSelect__option:hover,
+.react-select .sellSelect__option--is-focused,
+.react-select .sellSelect__option:active
+{
+background-color: var(--primary-light-color);
+}
+
+
+
+
+
+
+    @media (min-width:991.98px) {
+        .sellform-inner{
+            max-width: 785px;
+            margin: auto;
+            padding: 10vh 0;
+            padding: min(10vh,120px) 0;
+            }
+
+            .sellform-container{
+             width: 73%;
+                }
+
+            .sellform-bg{
+                width: 27%;
+                background-image:url(../../../assets/img/svg/seller-bg.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+            #sellForm .form-group{
+             margin-bottom: 2.5rem;
+                }
+
+                #sellForm .col{
+                  padding: 0 2rem;
+                       }
+
+                       #sellForm  .custom-checkbox .custom-control-label > span{
+                        display: block;
+                        margin-top: -0.75rem;
+                        margin-left: 0.75rem;
+         }
+
+    }
+
+    @media (min-width:1444.98px) {
+   
+
+            .sellform-container{
+             width: 65%;
+                }
+
+            .sellform-bg{
+                width: 35%;
+            }
+
+
+    }
+
+
+
 
 
 /* .react-select .sellSelect__option::before {

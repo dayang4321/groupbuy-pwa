@@ -34,10 +34,14 @@ main[data-page$=start]{
       background-size: cover;
       color: #FFFFFF;
       background-position: center;
-      /* animation-name: move;
-      animation-duration: 180s;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear; */
+  }
+  
+  }
+
+
+  @media (min-width:991.98px) {
+    main[data-page$="sell"]{
+     padding: 0;
   }
   
   }

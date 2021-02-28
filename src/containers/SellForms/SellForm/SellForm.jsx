@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useCallback, useMemo } from "react";
 import FormToolTip from "../../../components/UI/FormToolTip/FormToolTip";
 import Input, {Checkbox, FileInput,ReactSelect,Textbox,} from "../../../components/UI/Input/Input";
-import { Collapse } from "react-bootstrap";
+import { Col, Collapse, Row } from "react-bootstrap";
 import { AuthContext } from "../../../context/AuthContext";
 import { FormContext } from "../../../context/FormContext";
 import { inputChangeHandler, currencyDisplay, todayDate } from "../../../shared/utility";
@@ -532,289 +532,331 @@ const SellForm = (props) => {
 
 
   return (
-    <div className="switch-collapse">
-    
-      {/* <Collapse in={!isOpen} timeout={2000}>
-                <div onClick={()=>openHandler(id)} className="label-text">{title ? <span>{title}</span> : <span>&nbsp;</span>}<RightArrow className="collapse-arrow"/></div>
-         </Collapse> */}
+    <div className="d-flex"> 
+      <div className="sellform-bg d-none d-lg-block">
 
-      <Collapse in={isOpen} timeout={2000}>
-        <div className="form-collapse d-flex align-items-center w-100 h-100 justify-content-center">
-          <form
-            className="w-100"
-            noValidate
-            id="sellForm"
-            onSubmit={handleSubmit}
-          >
-            <div className="tooltip-group">
-              <FormToolTip textArrIndex={0} />
-              <Input
-                disabled={isSubmitted}
-                autoFocus
-                label="Name of Product"
-                placeholder="eg. Ox standing fan, Living room couch."
-                name="product_name"
-                required={true}
-                value={sellForm.product_name.value}
-                onChange={(e) =>
-                  inputChangeHandler(e, "product_name", sellForm, setSellForm)
-                }
-                isValid={shouldValidate("product_name")}
-                isInvalid={shouldInValidate("product_name")}
-                onBlur={(e)=>titleSetHandler(e)}
-              />
-            </div>
-            <fieldset
-              disabled={!isTitleSet || isSubmitted}
-              className={`${!isTitleSet && 'form-disable'}`} >    
-            <div className="d-flex justify-content-between mt-3">
-              <FileInput
-                onChange={(e) => {
-                  videoPreviewHandler(e);
-                  inputChangeHandler(e, "video", sellForm, setSellForm);
-                }}
-                name="video"
-                errorStatus={formTouched && !sellForm.video.valid}
-                label="Add product video"
-                //capture="environment"
-                accept="video/*"
-              />
-
-              <FileInput
-                name="images"
-                onChange={(e) => {
-                  imagePreviewHandler(e);
-                  inputChangeHandler(e, "images", sellForm, setSellForm);
-                }}
-                label="Add product pictures"
-                errorStatus={formTouched && !sellForm.images.valid}
-                //capture="environment"
-                accept="image/*"
-                type="photo"
-              />
-            </div>
-            <p className="font-italic upload-info text-center">Upload at least one picture and a video of your product.</p>
-            
-  
-              <MediaPreview
-              photos={photoFiles.map((f) => f.data)}
-              removeHandler={mediaRemoveHandler}
-              video={videoFile.map((f) => f.data)}
-              productPhotoProgress={photoFilesProgress.product}
-              productVideoProgress={videoFileProgress.product}
-              />
-          
-             <div className="tooltip-group">
-              <FormToolTip textArrIndex={1} />
-              <Textbox
-                label="Description"
-                name="description"
-                placeholder=""
-                required={true}
-                value={sellForm.description.value}
-                onChange={(e) =>
-                  inputChangeHandler(e, "description", sellForm, setSellForm)
-                }
-                isValid={shouldValidate("description")}
-                isInvalid={shouldInValidate("description")}
-                />
-                <p className="font-italic mt-n2 mb-3">
-                <strong>Highlights:</strong><br/><br/>
-                Colour; Size; How long your item has been used; Has your item been repaired;
-                   Specifications or materials of item.<br/><br/>
-                 <strong>The more descriptive an item the higher its sale potential.</strong> 
-                </p>
-              </div>
-              <div className="tooltip-group">
-              <ReactSelect
-                  options={formContext.categoryOptions} 
-             label="Category"
-             name="category"
-                  required={true}
-                  prefix="sellSelect"
-            // value={sellForm.category.value}
-            //  onChange={(e) =>
-            //    inputChangeHandler(e, "category", sellForm, setSellForm)
-            //  }
-            //  isValid={shouldValidate("category")}
-            //       isInvalid={shouldInValidate("category")}
-                />
-              </div>
-              <div className="tooltip-group">
-              <FormToolTip textArrIndex={2} />
-              <Input
-                label="Total Quantity"
-                controlId="total_quantity"
-                groupClass="price-group"
-                required={true}
-                value={sellForm.total_quantity.value}
-                inputMode="numeric"
-                onChange={(e) => {
-                  inputChangeHandler(e, "total_quantity", sellForm, setSellForm);
-                  }}
-                  type="number"
-                isValid={shouldValidate("total_quantity")}
-                isInvalid={shouldInValidate("total_quantity")}
-              />
-              </div>
-              <div className="tooltip-group">
-              <FormToolTip textArrIndex={3} />
-              <Input
-                label="MOQ (Minimum order quantity)"
-                controlId="minimum_quantity"
-                groupClass="price-group"
-                required={true}
-                value={sellForm.minimum_quantity.value}
-                inputMode="numeric"
-                onChange={(e) => {
-                  inputChangeHandler(e, "minimum_quantity", sellForm, setSellForm);
-                  }}
-                  type="number"
-                isValid={shouldValidate("minimum_quantity")}
-                isInvalid={shouldInValidate("minimum_quantity")}
-              />
-              </div>
-              <div className="tooltip-group">
-              {/* <FormToolTip textArrIndex={2} /> */}
-              <Input
-                label="Deal Price"
-                controlId="deal_price"
-                groupClass="price-group"
-                required={true}
-                value={sellForm.deal_price.value}
-                inputMode="numeric"
-                onChange={(e) => {
-                  inputChangeHandler(e, "deal_price", sellForm, setSellForm);
-                  currencyDisplay(e);
-                }}
-                isValid={shouldValidate("deal_price")}
-                isInvalid={shouldInValidate("deal_price")}
-              />
-              </div>
-              <div className="tooltip-group">
-              <FormToolTip textArrIndex={4} />
-              <Input
-                label="Retail Price in Market"
-                controlId="retail_price"
-                groupClass="price-group"
-                required={true}
-                value={sellForm.retail_price.value}
-                inputMode="numeric"
-                onChange={(e) => {
-                  inputChangeHandler(e, "retail_price", sellForm, setSellForm);
-                  currencyDisplay(e);
-                }}
-                isValid={shouldValidate("retail_price")}
-                isInvalid={shouldInValidate("retail_price")}
-              />
-              </div>
-            <div className="tooltip-group">
-              <FormToolTip textArrIndex={5} />
-              <Input
-                type="date"
-                label="Deal End date"
-                placeholder=""
-                name="deal_end_date"
-                required={true}
-                value={sellForm.deal_end_date.value}
-                min={todayDate()}
-                onChange={(e) =>{
-                  console.log(e.target.value);
-                  inputChangeHandler(e, "deal_end_date", sellForm, setSellForm)}
-                }
-                isValid={shouldValidate("deal_end_date")}
-                isInvalid={shouldInValidate("deal_end_date")}
-                onBlur={(e)=>titleSetHandler(e)}
-              />
-              </div>
-              
-        {/* { authContext.userRole==="admin" &&  <>
-              <div className="tooltip-group">
-        
-              <Input
-                label="Customer Name"
-                controlId="customer_name"
-                groupClass=""
-                required={true}
-                value={customerInfo.customer_name.value}
-                onChange={(e) => {
-                  inputChangeHandler(e, "customer_name", customerInfo, setCustomerInfo);
-                }}
-                isValid={shouldValidateCustomer("customer_name")}
-                isInvalid={shouldInValidateCustomer("customer_name")}
-                />
-                
-              </div>
-              
-              <div className="tooltip-group">
-        
-        <Input
-          label="Customer Phone"
-          controlId="customer_phone"
-          groupClass=""
-                  required={true}
-                  type="tel"
-          value={customerInfo.customer_phone.value}
-          onChange={(e) => {
-            inputChangeHandler(e, "customer_phone", customerInfo, setCustomerInfo);
-          }}
-          isValid={shouldValidateCustomer("customer_phone")}
-          isInvalid={shouldInValidateCustomer("customer_phone")}
-          />
-       </div>
-       <div>   
-        <Input
-          label="Customer Email"
-          controlId="customer_email"
-          groupClass=""
-                  required={true}
-                  type="email"
-          value={customerInfo.customer_email.value}
-          onChange={(e) => {
-            inputChangeHandler(e, "customer_email", customerInfo, setCustomerInfo);
-          }}
-          isValid={shouldValidateCustomer("customer_email")}
-          isInvalid={shouldInValidateCustomer("customer_email")}
-          />
-          
       </div>
-              </>}
-               */}
+<div className="sellform-container">
+          <div className="sellform-inner">
+      <h2 className="mb-4 primary-text px-lg-3">Lets help you create a bulk deal.</h2>
+          <div className="switch-collapse">
+    
+    {/* <Collapse in={!isOpen} timeout={2000}>
+              <div onClick={()=>openHandler(id)} className="label-text">{title ? <span>{title}</span> : <span>&nbsp;</span>}<RightArrow className="collapse-arrow"/></div>
+       </Collapse> */}
 
-            <div className="tooltip-group mt-3 mb-4">
-              <FormToolTip textArrIndex={6} />
-              <Checkbox
-                label="Allow customers restart this deal"
-                onChange={(e) => {
-                  inputChangeHandler(e, "can_restart", sellForm, setSellForm);
-                }}
-                value={sellForm.can_restart.value}
-                checked={sellForm.can_restart.value}
-                controlId="can_restart"
+    <Collapse in={isOpen} timeout={2000}>
+      <div className="form-collapse d-flex align-items-center w-100 h-100 justify-content-center">
+        <form
+          className="w-100"
+          noValidate
+          id="sellForm"
+          onSubmit={handleSubmit}
+
+        >
+          <Row xs={1} md={2}>
+            <Col>
+            <div className="tooltip-group">
+            <FormToolTip textArrIndex={0} />
+            <Input
+              disabled={isSubmitted}
+              autoFocus
+              label="Name of Product"
+              placeholder="eg. Ox standing fan, Living room couch."
+              name="product_name"
+              required={true}
+              value={sellForm.product_name.value}
+              onChange={(e) =>
+                inputChangeHandler(e, "product_name", sellForm, setSellForm)
+              }
+              isValid={shouldValidate("product_name")}
+              isInvalid={shouldInValidate("product_name")}
+              onBlur={(e)=>titleSetHandler(e)}
+            />
+                      </div>
+                      <fieldset  disabled={!isTitleSet || isSubmitted}
+            className={`${!isTitleSet && 'form-disable'}`}>
+            <div className="d-flex justify-content-between mt-3">
+            <FileInput
+              onChange={(e) => {
+                videoPreviewHandler(e);
+                inputChangeHandler(e, "video", sellForm, setSellForm);
+              }}
+              name="video"
+              errorStatus={formTouched && !sellForm.video.valid}
+              label="Add product video"
+              //capture="environment"
+              accept="video/*"
+            />
+
+            <FileInput
+              name="images"
+              onChange={(e) => {
+                imagePreviewHandler(e);
+                inputChangeHandler(e, "images", sellForm, setSellForm);
+              }}
+              label="Add product pictures"
+              errorStatus={formTouched && !sellForm.images.valid}
+              //capture="environment"
+              accept="image/*"
+              type="photo"
+            />
+          </div>
+          <p className="font-italic upload-info text-center">Upload at least one picture and a video of your product.</p>
+          <MediaPreview
+            photos={photoFiles.map((f) => f.data)}
+            removeHandler={mediaRemoveHandler}
+            video={videoFile.map((f) => f.data)}
+            productPhotoProgress={photoFilesProgress.product}
+            productVideoProgress={videoFileProgress.product}
+                        />
+                        </fieldset>
+            </Col>
+                    <Col>
+                    <fieldset  disabled={!isTitleSet || isSubmitted}
+            className={`${!isTitleSet && 'form-disable'}`}>
+            <div className="tooltip-group">
+            <FormToolTip textArrIndex={1} />
+            <Textbox
+              label="Description"
+              name="description"
+              placeholder=""
+              required={true}
+              value={sellForm.description.value}
+              onChange={(e) =>
+                inputChangeHandler(e, "description", sellForm, setSellForm)
+              }
+              isValid={shouldValidate("description")}
+              isInvalid={shouldInValidate("description")}
               />
-              </div>
-              
-              {formTouched && sellForm.formValidity === false && (
-              <p className="text-danger text-center error-text font-weight-bolder">
-                Kindly review your inputs
+              <p className="font-italic mt-n2 mb-3">
+              <strong>Highlights:</strong><br/><br/>
+              Colour; Size; How long your item has been used; Has your item been repaired;
+                 Specifications or materials of item.<br/><br/>
+               <strong>The more descriptive an item the higher its sale potential.</strong> 
               </p>
-            )}
-            <div className="form-submit">
-              <Button
-                className="submit-btn secondary-btn p-3 w-100"
-                disabled={formLoading}
-                type="submit"
-              >
-                {formLoading ? "Submitting.." : "Done"}
-              </Button>
-              {formLoading && <ProgressBar now={formProgress} />}
+                        </div>
+                        </fieldset>
+            </Col>
+          
+          </Row>
+     
+          {/* <fieldset
+            disabled={!isTitleSet || isSubmitted}
+            className={`${!isTitleSet && 'form-disable'}`} >     */}
+     
+          
+
+          <fieldset  disabled={!isTitleSet || isSubmitted}
+            className={`${!isTitleSet && 'form-disable'}`}>
+          <Row xs={1} md={2} >
+          <Col className="tooltip-group">
+            <ReactSelect
+                options={formContext.categoryOptions} 
+           label="Category"
+           name="category"
+                required={true}
+                prefix="sellSelect"
+          // value={sellForm.category.value}
+          //  onChange={(e) =>
+          //    inputChangeHandler(e, "category", sellForm, setSellForm)
+          //  }
+          //  isValid={shouldValidate("category")}
+          //       isInvalid={shouldInValidate("category")}
+              />
+            </Col>
+            <Col className="tooltip-group">
+            <FormToolTip textArrIndex={2} />
+            <Input
+              label="Total Quantity"
+              controlId="total_quantity"
+              groupClass="price-group"
+              required={true}
+              value={sellForm.total_quantity.value}
+              inputMode="numeric"
+              onChange={(e) => {
+                inputChangeHandler(e, "total_quantity", sellForm, setSellForm);
+                }}
+                type="number"
+              isValid={shouldValidate("total_quantity")}
+              isInvalid={shouldInValidate("total_quantity")}
+            />
+            </Col>
+            <Col className="tooltip-group">
+            <FormToolTip textArrIndex={3} />
+            <Input
+              label="MOQ (Minimum order quantity)"
+              controlId="minimum_quantity"
+              groupClass="price-group"
+              required={true}
+              value={sellForm.minimum_quantity.value}
+              inputMode="numeric"
+              onChange={(e) => {
+                inputChangeHandler(e, "minimum_quantity", sellForm, setSellForm);
+                }}
+                type="number"
+              isValid={shouldValidate("minimum_quantity")}
+              isInvalid={shouldInValidate("minimum_quantity")}
+            />
+            </Col>
+            <Col className="tooltip-group">
+            {/* <FormToolTip textArrIndex={2} /> */}
+            <Input
+              label="Deal Price"
+              controlId="deal_price"
+              groupClass="price-group"
+              required={true}
+              value={sellForm.deal_price.value}
+              inputMode="numeric"
+              onChange={(e) => {
+                inputChangeHandler(e, "deal_price", sellForm, setSellForm);
+                currencyDisplay(e);
+              }}
+              isValid={shouldValidate("deal_price")}
+              isInvalid={shouldInValidate("deal_price")}
+            />
+            </Col>
+            <Col className="tooltip-group">
+            <FormToolTip textArrIndex={4} />
+            <Input
+              label="Retail Price in Market"
+              controlId="retail_price"
+              groupClass="price-group"
+              required={true}
+              value={sellForm.retail_price.value}
+              inputMode="numeric"
+              onChange={(e) => {
+                inputChangeHandler(e, "retail_price", sellForm, setSellForm);
+                currencyDisplay(e);
+              }}
+              isValid={shouldValidate("retail_price")}
+              isInvalid={shouldInValidate("retail_price")}
+            />
+            </Col>
+          <Col className="tooltip-group">
+            <FormToolTip textArrIndex={5} />
+            <Input
+              type="date"
+              label="Deal End date"
+              placeholder=""
+              name="deal_end_date"
+              required={true}
+              value={sellForm.deal_end_date.value}
+              min={todayDate()}
+              onChange={(e) =>{
+                console.log(e.target.value);
+                inputChangeHandler(e, "deal_end_date", sellForm, setSellForm)}
+              }
+              isValid={shouldValidate("deal_end_date")}
+              isInvalid={shouldInValidate("deal_end_date")}
+              onBlur={(e)=>titleSetHandler(e)}
+            />
+            </Col>
+            
+
+            <Col className="ml-auto">
+            <div className="tooltip-group mt-3 mb-4 ml-auto">
+            <FormToolTip textArrIndex={6} />
+            <Checkbox
+              label="Allow customers restart this deal"
+              onChange={(e) => {
+                inputChangeHandler(e, "can_restart", sellForm, setSellForm);
+              }}
+              value={sellForm.can_restart.value}
+              checked={sellForm.can_restart.value}
+              controlId="can_restart"
+            />
             </div>
-            </fieldset>   
-          </form>
-        </div>
-      </Collapse>
+            
+            {formTouched && sellForm.formValidity === false && (
+            <p className="text-danger text-center error-text font-weight-bolder">
+              Kindly review your inputs
+            </p>
+          )}
+          <div className="form-submit">
+            <Button
+              className="submit-btn secondary-btn p-3 w-100"
+              disabled={formLoading}
+              type="submit"
+            >
+              {formLoading ? "Submitting.." : "Done"}
+            </Button>
+            {formLoading && <ProgressBar now={formProgress} />}
+          </div>
+            
+            </Col>
+    
+        </Row>
+   
+        </fieldset>
+       
+          
+      {/* { authContext.userRole==="admin" &&  <>
+            <div className="tooltip-group">
+      
+            <Input
+              label="Customer Name"
+              controlId="customer_name"
+              groupClass=""
+              required={true}
+              value={customerInfo.customer_name.value}
+              onChange={(e) => {
+                inputChangeHandler(e, "customer_name", customerInfo, setCustomerInfo);
+              }}
+              isValid={shouldValidateCustomer("customer_name")}
+              isInvalid={shouldInValidateCustomer("customer_name")}
+              />
+              
+            </div>
+            
+            <div className="tooltip-group">
+      
+      <Input
+        label="Customer Phone"
+        controlId="customer_phone"
+        groupClass=""
+                required={true}
+                type="tel"
+        value={customerInfo.customer_phone.value}
+        onChange={(e) => {
+          inputChangeHandler(e, "customer_phone", customerInfo, setCustomerInfo);
+        }}
+        isValid={shouldValidateCustomer("customer_phone")}
+        isInvalid={shouldInValidateCustomer("customer_phone")}
+        />
+     </div>
+     <div>   
+      <Input
+        label="Customer Email"
+        controlId="customer_email"
+        groupClass=""
+                required={true}
+                type="email"
+        value={customerInfo.customer_email.value}
+        onChange={(e) => {
+          inputChangeHandler(e, "customer_email", customerInfo, setCustomerInfo);
+        }}
+        isValid={shouldValidateCustomer("customer_email")}
+        isInvalid={shouldInValidateCustomer("customer_email")}
+        />
+        
     </div>
-  );
+            </>}
+             */}
+
+          {/* </fieldset>    */}
+        </form>
+      </div>
+    </Collapse>
+  </div>
+
+    </div>
+ 
+    </div>
+
+</div>
+    
+);
 };
 
 export default SellForm;

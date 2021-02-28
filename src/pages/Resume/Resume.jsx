@@ -12,7 +12,7 @@ function Resume() {
 
     const history = useHistory();
 
-    const [isResumed, setIsResumed] = useState(false);
+ 
 
     let display;
     
@@ -26,11 +26,11 @@ function Resume() {
 
         if (formContext.needsCompleting) {
             display = (<div>
-                <WelcomeBack setResume={setIsResumed}
+                <WelcomeBack setResume={formContext.setIsResumed}
                 />
             </div>)
         
-            if (formContext.needsCompleting && isResumed) {
+            if (formContext.needsCompleting && formContext.isResumed) {
                 history.push('/sell')
             }
         }

@@ -23,3 +23,11 @@
     font-size: 13px;
     line-height: 1.17;
 }
+
+
+@media (min-width:991.98px) { 
+ .tooltip-group.col .toolicon{
+        right: 2rem;
+        top: -0.25rem;
+    }
+}

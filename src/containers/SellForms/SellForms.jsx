@@ -154,8 +154,6 @@ function SellForms(props) {
 
   return (
     <div>
-      {!isSuccess && <h2 className="mb-4 primary-text">Lets help you create a bulk deal.</h2>}
-
       {isSuccess ? completeMsg : sellFormsArr}
       {/* <Profile/> */}
     </div>

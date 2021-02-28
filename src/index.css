@@ -15,7 +15,7 @@
   
   
   --h1-font-size: 3.875rem;
-  --h2-font-size: min(max(30px,  8.6956vw), 70px);
+  --h2-font-size: 3rem;
   --h3-font-size: min(max(28px, 8.6956vw), 48px);
   --h4-font-size: min(max(24px, 8.6956vw), 42px);
   --h5-font-size: min(max(18px, 5.797vw), 28px);
@@ -117,7 +117,9 @@ background-color: #000000;
 
 .submit-btn{
   border-radius: 10px;
-  margin-top:5vw
+  margin-top:20px;
+  font-size: 1.5rem;
+  font-size: max(18px, 1.375rem);
 }
 
 .another-btn{
@@ -203,7 +205,7 @@ padding: min(2.5vw,18px) 0vw;
 
 @media (max-width: 1619.98px) {
   :root {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 
@@ -217,7 +219,7 @@ padding: min(2.5vw,18px) 0vw;
 /* // X-Large devices (large desktops, less than 1400px) */
 @media (max-width: 1379.98px) {
   :root {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
@@ -236,7 +238,7 @@ padding: min(2.5vw,18px) 0vw;
 
 @media (max-width: 1019.98px) {
   :root {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
