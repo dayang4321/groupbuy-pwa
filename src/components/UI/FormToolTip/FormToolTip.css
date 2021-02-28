@@ -9,6 +9,7 @@
 
 .tooltip.show {
     opacity: 0.96!important;
+    max-width: 650px;
 }
 
 .tooltip-inner {
@@ -29,5 +30,19 @@
  .tooltip-group.col .toolicon{
         right: 2rem;
         top: -0.25rem;
+    }
+
+    .tooltip-inner span{
+        font-family: var(--second-font-family);
+        font-size: 18px;
+        line-height: 1.17;
+    }
+    .tooltip.show {
+        opacity: 0.96!important;
+        max-width: 650px;
+    }
+    .tooltip-inner {
+        padding: 50px!important;
+        border-radius: 20px!important;
     }
 }

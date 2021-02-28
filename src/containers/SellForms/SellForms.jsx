@@ -18,6 +18,8 @@ function SellForms(props) {
 
   const [isOpenArr, setIsOpenArr] = React.useState([true]);
 
+  const [isProfiling, setIsProfiling] =  React.useState(true)
+
   const [isSuccess, setIsSuccess] = React.useState(false);
 
   const [sellFormsArr, setSellFormsArr] = useState([]);
@@ -66,6 +68,10 @@ function SellForms(props) {
     setIsOpenArr([]);
     setIsSuccess(true);
   };
+
+  const profileCompleteHandler = () => {
+    setIsProfiling(false)
+  }
 
 
   // const heardSubmit = (value) => {
@@ -154,8 +160,8 @@ function SellForms(props) {
 
   return (
     <div>
-      {/* {isSuccess ? completeMsg : sellFormsArr} */}
-    <ProfileForm />
+      {isSuccess ? isProfiling? <ProfileForm profileComplete={profileCompleteHandler} /> : completeMsg   : sellFormsArr}
+ 
     </div>
   );
 }

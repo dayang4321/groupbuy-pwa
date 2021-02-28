@@ -18,7 +18,7 @@ export const FormContext = React.createContext({
 
 const FormContextProvider = (props) => {
   //Does the product need completing?
-  const [needsCompleting, setNeedsCompleting] = useState(true);
+  const [needsCompleting, setNeedsCompleting] = useState(false);
   //Product data
   const [incompleteData, setIncompleteData] = useState({
     productId: "",

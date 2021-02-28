@@ -304,7 +304,7 @@ const SellForm = (props) => {
     }
   };
 
-  console.log(sellForm)
+ console.log(sellForm)
 
   const videoPreviewHandler = (e, type) => {
     if (e.target.files[0]) {
@@ -658,9 +658,15 @@ const SellForm = (props) => {
                 required={true}
                 prefix="sellSelect"
           // value={sellForm.category.value}
-          //  onChange={(e) =>
-          //    inputChangeHandler(e, "category", sellForm, setSellForm)
-          //  }
+          // onInputChange={(v,a) =>{ console.log(v,a)}
+          //    //inputChangeHandler(e, "category", sellForm, setSellForm)
+          //                 }
+                          onChange={(v, a) => {
+                            console.log(v, a);
+                            a.action==="select-option"? inputChangeHandler(v.value.toString(), "category", sellForm, setSellForm, 'select') :  console.log(a);
+                          }
+                          //inputChangeHandler(e, "category", sellForm, setSellForm)
+                        }
           //  isValid={shouldValidate("category")}
           //       isInvalid={shouldInValidate("category")}
               />

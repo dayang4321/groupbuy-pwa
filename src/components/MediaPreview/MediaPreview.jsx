@@ -16,7 +16,7 @@ function MediaPreview(props) {
       <div className="mb-4">
           
 
-          {video[0] && (
+          {!!(video && video[0]) && (
                  <>
                  <h6 className="mb-2">Videos</h6>
                   <div className="video-preview  mb-4">
@@ -35,7 +35,7 @@ function MediaPreview(props) {
 
           }
    
-      {photos[0] && (
+      {!!(photos && photos[0])  && (
         <>
           <h6 className="mb-2">Pictures</h6>
           <div className="image-preview">

@@ -31,7 +31,7 @@ function FormToolTip(props) {
         placement="bottom-end"
         delay={{ show: 200, hide: 200 }}
             overlay={renderTooltip}
-            trigger={["click", "hover","focus"]}
+            trigger={["click"]}
       >
         <div className="toolicon position-absolute">
             <InfoIcon/>
