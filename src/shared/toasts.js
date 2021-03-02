@@ -8,6 +8,7 @@ export function darkToast(message) {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+      progress: undefined,
+        
       });
 }

@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useCallback,useContext } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SellForm from "./SellForm/SellForm";
 
 import { ReactComponent as PlusCircle } from "../../assets/img/svg/plus-circle.svg";
 import Tick from "../../assets/img/svg/tick.svg";
 import "./SellForms.css";
-import { Select } from "../../components/UI/Input/Input";
-import Axios, { setAuthToken } from "../../groupbuy-axios-base"
-import { AuthContext } from "../../context/AuthContext";
+// import { Select } from "../../components/UI/Input/Input";
+// import Axios, { setAuthToken } from "../../groupbuy-axios-base"
+//import { AuthContext } from "../../context/AuthContext";
 import { Fade } from "react-bootstrap";
 import ProfileForm from "../ProfileForm/ProfileForm";
 
 function SellForms(props) {
 
-  const authContext = useContext(AuthContext)
+  // const authContext = useContext(AuthContext)
 
   const {resetIncomplete} = props;
 
@@ -120,11 +120,11 @@ function SellForms(props) {
 
   const completeMsg = (
     <Fade in appear timeout={500}>
-         <div className="text-center">
+         <div className="text-center success-container">
       <img width={200} height={300} className="tick-svg mx-auto" src={Tick} alt="tick" />
-      <h2 className="text-left">
+      <h3 className="text-left font-weight-bold">
       You would be notified once your deal is accepted
-      </h2>
+      </h3>
       <button
         className="another-btn w-100 pr-3 mb-5 text-center btn bg-transparent"
         onClick={(e) => {
@@ -135,7 +135,7 @@ function SellForms(props) {
         }}
        // disabled={heardLoading}
       >
-        <PlusCircle className="mr-3" />
+          <PlusCircle className="mr-3" width="1.6em" height="1.6em"/>
         Create new deal
       </button>
       {/* <Fade in={!isHeard}>

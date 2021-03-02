@@ -4,5 +4,27 @@
     margin-bottom: 9vw;
 }
 
+@media (min-width: 991.98px){
+
+    .success-container{
+        max-width: 518px;
+        margin: auto;
+        padding: 7rem 0;
+    }
+
+    .tick-svg{
+        width: 80%;
+        max-width: 300px;
+        margin-bottom: 5vh;
+    }
+
+    .another-btn{
+       padding: 30px 0;
+       font-size: 27px;
+    }
+
+}
+
+
 
 

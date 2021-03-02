@@ -16,7 +16,7 @@
   
   --h1-font-size: 3.875rem;
   --h2-font-size: 3rem;
-  --h3-font-size: min(max(28px, 8.6956vw), 48px);
+  --h3-font-size: 2.6rem;
   --h4-font-size: min(max(24px, 8.6956vw), 42px);
   --h5-font-size: min(max(18px, 5.797vw), 28px);
   --sub-heading-font-size: min(max(20px, 4.347vw), 28px);
@@ -56,6 +56,7 @@ h2 {
 }
 h3 {
   font-size: var(--h3-font-size);
+  letter-spacing: -0.035em;
 }
 
 h4{
@@ -130,7 +131,8 @@ font-weight: 600;
 margin-top: min(9vw, 36px);
 color: var(--secondary-color);
 padding:2.5vw 0vw;
-font-size: var(--body-text-font-size);
+font-size: 18px;
+
 }
 
 .another-btn:hover,
